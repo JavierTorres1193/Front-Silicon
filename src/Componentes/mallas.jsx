@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import * as API from '../Servicios/Servicios'
 
-export function ListaMallas(){
+
+export function     ListaMallas(){
+
+    const [malla, setMallas] = useState([]);
+
+    useEffect(()=>{
+        API.mallas().then(setMallas)
+    },[])
+    
     return(
 
-        <div class="card">
-        <div class="card-header">
-          Stock de Mallas
+        <div className="card">
+        <div className="card-header">
+        Stock de Mallas
         </div>
-        <div class="card-body">
-        <div class="table-responsive">
-                <table class="table table-primary">
+        <div className="card-body">
+        <div className="table-responsive">
+                <table className="table table-primary">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -20,28 +30,21 @@ export function ListaMallas(){
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td scope="row">R1C1</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
+                        {malla.map((mallas)=>(
+                        <tr className="">
+                            <td scope="row">{mallas.idMallas}</td>
+                            <td>{mallas.Talle}</td>
+                            <td>{mallas.Cantidad}</td>
+                            <td>{mallas.Color}</td>
+                            <td>{mallas.Estado}</td>
 
                         </tr>
-                        <tr class="">
-                            <td scope="row">Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-
-                        </tr>
-                        
+                    ))}
                     </tbody>
                 </table>
             </div>
         </div>
-      </div>
+    </div>
             
             
 

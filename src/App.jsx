@@ -31,7 +31,7 @@ function App() {
           Productos
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <Link className="dropdown-item" to={'/listarbuzos'}>Buzos y camperas</Link>
+          <Link className="dropdown-item" to={'/listarbuzosycamperas'}>Buzos y camperas</Link>
           <Link className="dropdown-item" to={'/listarchanclas'}>Chanclas</Link>
           <Link className="dropdown-item" to={'/listarmallas'}>Mallas</Link>
           <Link className="dropdown-item" to={'/listarpantalones'}>Pantalones</Link>
@@ -46,9 +46,9 @@ function App() {
           <Route path='/' element={<Principal/>}></Route> 
           <Route path='/listarremeras' element={<ListaRemeras/>}></Route>
           <Route path='/listarpantalones' element={<ListaPantalones/>}></Route>
-          <Route path='listarchanclas' element={<ListaChanclas/>}></Route>
-          <Route path='listarbuzos' element={<ListaBuzos/>}></Route>
-          <Route path='listarmallas' element={<ListaMallas/>}></Route>
+          <Route path='/listarchanclas' element={<ListaChanclas/>}></Route>
+          <Route path='/listarbuzosycamperas' element={<ListaBuzos/>}></Route>
+          <Route path='/listarmallas' element={<ListaMallas/>}></Route>
 
         </Routes>
     </div>

@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import * as API from '../Servicios/Servicios'
 
-export function ListaChanclas(){
+
+export function     ListaChanclas(){
+
+    const [chancla, setChanclas] = useState([]);
+
+    useEffect(()=>{
+        API.chanclas().then(setChanclas)
+    },[])
+    
     return(
 
-        <div class="card">
-        <div class="card-header">
-          Stock de Chanclas
+        <div className="card">
+        <div className="card-header">
+        Stock Chanclas
         </div>
-        <div class="card-body">
-        <div class="table-responsive">
-                <table class="table table-primary">
+        <div className="card-body">
+        <div className="table-responsive">
+                <table className="table table-primary">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -20,28 +30,21 @@ export function ListaChanclas(){
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td scope="row">R1C1</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
+                        {chancla.map((chanclas)=>(
+                        <tr className="">
+                            <td scope="row">{chanclas.idchanclas}</td>
+                            <td>{chanclas.Talle}</td>
+                            <td>{chanclas.Cantidad}</td>
+                            <td>{chanclas.Color}</td>
+                            <td>{chanclas.Estado}</td>
 
                         </tr>
-                        <tr class="">
-                            <td scope="row">Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-
-                        </tr>
-                        
+                    ))}
                     </tbody>
                 </table>
             </div>
         </div>
-      </div>
+    </div>
             
             
 

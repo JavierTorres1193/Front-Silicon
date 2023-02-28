@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import * as API from '../Servicios/Servicios'
 
-export function ListaRemeras(){
+
+export function     ListaRemeras(){
+
+    const [remera, setRemeras] = useState([]);
+
+    useEffect(()=>{
+        API.remeras().then(setRemeras)
+    },[])
+    
     return(
 
-        <div class="card">
-        <div class="card-header">
-          Stock de Remeras
+        <div className="card">
+        <div className="card-header">
+        Stock de Remeras
         </div>
-        <div class="card-body">
-        <div class="table-responsive">
-                <table class="table table-primary">
+        <div className="card-body">
+        <div className="table-responsive">
+                <table className="table table-primary">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -20,28 +30,21 @@ export function ListaRemeras(){
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td scope="row">R1C1</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
+                        {remera.map((remeras)=>(
+                        <tr className="">
+                            <td scope="row">{remeras.idremeras}</td>
+                            <td>{remeras.Talle}</td>
+                            <td>{remeras.Cantidad}</td>
+                            <td>{remeras.Color}</td>
+                            <td>{remeras.Estado}</td>
 
                         </tr>
-                        <tr class="">
-                            <td scope="row">Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-                            <td>Item</td>
-
-                        </tr>
-                        
+                    ))}
                     </tbody>
                 </table>
             </div>
         </div>
-      </div>
+    </div>
             
             
 
