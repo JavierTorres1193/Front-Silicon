@@ -13,13 +13,13 @@ export function     ListaBuzos(){
     
     return(
 
-        <div className="card">
+        <div className="card table bg-dark text-white">
         <div className="card-header">
         Stock de Buzos y Camperas
         </div>
         <div className="card-body">
         <div className="table-responsive">
-                <table className="table table-primary">
+                <table className="table text-white">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -27,6 +27,7 @@ export function     ListaBuzos(){
                             <th scope="col">Cantidad</th>
                             <th scope="col">Color</th>
                             <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +38,13 @@ export function     ListaBuzos(){
                             <td>{buzosycamperas.Cantidad}</td>
                             <td>{buzosycamperas.Color}</td>
                             <td>{buzosycamperas.Estado}</td>
-
+                            <td>
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" className="btn btn-outline-primary">Alta</button>
+                                <button type="button" className="btn btn-outline-secondary">Editar</button>
+                                <button type="button" className="btn btn-outline-danger">Baja</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                     </tbody>

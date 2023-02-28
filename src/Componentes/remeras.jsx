@@ -27,6 +27,8 @@ export function     ListaRemeras(){
                             <th scope="col">Cantidad</th>
                             <th scope="col">Color</th>
                             <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +39,14 @@ export function     ListaRemeras(){
                             <td>{remeras.Cantidad}</td>
                             <td>{remeras.Color}</td>
                             <td>{remeras.Estado}</td>
-
+                            <td>
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" className="btn btn-outline-primary">Alta</button>
+                                <button type="button" className="btn btn-outline-secondary">Editar</button>
+                                <button type="button" className="btn btn-outline-danger">Baja</button>
+                                </div>
+                            </td>
+                        
                         </tr>
                     ))}
                     </tbody>
