@@ -10,6 +10,7 @@ import { ListaBuzos } from './Componentes/buzos'
 import { ListaMallas } from './Componentes/mallas'
 import { Login } from './Componentes/Login'
 import { Menu } from './Componentes/Menu'
+import {Registro} from './Componentes/Registro';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Principal/>}></Route> 
           <Route path='/login' element={<Login/>}></Route>
+          <Route path='/registro' element={<Registro/>}></Route>
           <Route path='/listarremeras' element={<ListaRemeras/>}></Route>
           <Route path='/listarpantalones' element={<ListaPantalones/>}></Route>
           <Route path='/listarchanclas' element={<ListaChanclas/>}></Route>

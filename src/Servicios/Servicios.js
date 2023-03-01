@@ -57,3 +57,41 @@ export async function remeras(){
     console.log('Nuestro error es',error);
 }
 }
+
+
+export async function Login(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    try{
+    const response = await fetch(`${API_URL}/login`, requestOptions)
+    const data = await response.json();
+    console.log(data)
+    return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+export async function Registro(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    try{
+    const response = await fetch(`${API_URL}/registro`, requestOptions)
+    const data = await response.json();
+    console.log(data)
+    return data;
+    } catch(e){
+        // console.log('no funciona')
+    }
+}

@@ -26,6 +26,9 @@ export function Menu(){
           <Link className="dropdown-item" to={'/listarremeras'}>Remeras</Link>
         </div>
       </li>
+      <li className="nav-item active">
+      <Link className="nav-link text-light"to={'/login'}>Salir</Link>
+      </li>
     </ul>
   </div>
 </nav>
