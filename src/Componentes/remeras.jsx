@@ -13,13 +13,13 @@ export function     ListaRemeras(){
     
     return(
 
-        <div className="card">
+        <div className="card table bg-dark text-white">
         <div className="card-header">
         Stock de Remeras
         </div>
         <div className="card-body">
         <div className="table-responsive">
-                <table className="table table-primary">
+                <table className="table text-white">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
