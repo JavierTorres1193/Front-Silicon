@@ -62,7 +62,7 @@ export async function AltaCliente(idClientes){
         }
     };
     try{
-        const response = await fetch(`${API_URL}/altausuario/${idClientes}`, requestOptions)
+        const response = await fetch(`${API_URL}/altaclientes/${idClientes}`, requestOptions)
         const data = await response.json();
         // console.log(data)
         return data;
