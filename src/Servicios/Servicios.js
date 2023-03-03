@@ -10,7 +10,7 @@ const API_URL = 'http://localhost:3300'
 
 export async function clientes(){
     try{
-    const response = await fetch(`${API_URL}/Clientes`);
+    const response = await fetch(`${API_URL}/clientes`);
     const data = await response.json();
     return data;
 }   catch (error){
@@ -77,6 +77,33 @@ export async function AltaCliente(idClientes){
 
         alert('No se puede conectar con el servidor')
     }
+}
+
+//EDITAR
+
+export function UpdateCliente(idClientes, datos){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/clientes/${idClientes}`, requestOptions)
+    
+}
+
+
+export function SaveCliente(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/clientes`, requestOptions)
+    
 }
 
 

@@ -13,6 +13,7 @@ import { Menu } from './Componentes/panel/Menu'
 import {Registro} from './Componentes/login/Registro';
 import { Clientes } from './Componentes/usuarios/Clientes'
 import { Proveedores } from './Componentes/usuarios/Proveedores'
+import { CreaCliente } from './Componentes/usuarios/EditClientes'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/clientes' element={<Clientes/>}></Route>
           <Route path='/proveedores' element={<Proveedores/>}></Route>
 
+          <Route path='/crear_cliente' element={<CreaCliente/>} ></Route>
 
           <Route path='/listarremeras' element={<ListaRemeras/>}></Route>
           <Route path='/listarpantalones' element={<ListaPantalones/>}></Route>

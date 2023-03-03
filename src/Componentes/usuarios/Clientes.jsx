@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
+// import DataTable from 'react-data-table-component'
 import * as API from '../../Servicios/Servicios'
 
 
@@ -56,6 +57,23 @@ export function Clientes(){
     }
 
 
+//////////////////////Edit//////////////////////////////
+
+const columns = [
+    {
+      name: 'Nombre',
+      selector: row => row.idClientes
+    },
+    {
+      name: 'Direccion',
+      selector: row => row.Direccion,
+    },
+    {
+      name: 'Telefono',
+      selector: row => row.Telefono
+    }
+]
+
 ////////////////////////////////////////////////////
 
 
@@ -98,7 +116,7 @@ export function Clientes(){
                             <td>{clientes.Nombre}</td>
                             <td>{clientes.Direccion}</td>
                             <td>{clientes.Telefono}</td>
-                            <td>{clientes.Estado}</td>
+                            <td>{clientes.Estado=='A'?'Activo':'Baja'}</td>
                             <td>
                             <div className="btn-group" role="group" aria-label="Basic example">
                             { (clientes.Estado=='A')? 
@@ -108,6 +126,9 @@ export function Clientes(){
                                 <button onClick={() =>altaCliente(clientes.idClientes,'A')} type="button" className="btn btn-outline-primary">Alta</button>
 
                                 }
+                                <Link name="" id="" className="btn btn-outline-secondary" to={'/crear_cliente'} role="button">Editar </Link>
+                                {/* <DataTable columns={columns} data={cliente} /> */}
+
                                 </div>
                             </td>
                         </tr>
