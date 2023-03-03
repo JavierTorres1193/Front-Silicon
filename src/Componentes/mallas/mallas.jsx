@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import * as API from '../Servicios/Servicios'
+import * as API from '../../Servicios/Servicios'
 
 
-export function     ListaPantalones(){
+export function     ListaMallas(){
 
-    const [pantalon, setPantalones] = useState([]);
+    const [malla, setMallas] = useState([]);
 
     useEffect(()=>{
-        API.pantalones().then(setPantalones)
+        API.mallas().then(setMallas)
     },[])
     
     return(
 
         <div className="card table bg-dark text-white">
         <div className="card-header">
-        Stock de Pantalones
+        Stock de Mallas
         </div>
         <div className="card-body">
         <div className="table-responsive">
@@ -32,13 +32,13 @@ export function     ListaPantalones(){
                         </tr>
                     </thead>
                     <tbody>
-                        {pantalon.map((pantalones)=>(
+                        {malla.map((mallas)=>(
                         <tr className="">
-                            <td scope="row">{pantalones.idpantalones}</td>
-                            <td>{pantalones.Talle}</td>
-                            <td>{pantalones.Cantidad}</td>
-                            <td>{pantalones.Color}</td>
-                            <td>{pantalones.Estado}</td>
+                            <td scope="row">{mallas.idMallas}</td>
+                            <td>{mallas.Talle}</td>
+                            <td>{mallas.Cantidad}</td>
+                            <td>{mallas.Color}</td>
+                            <td>{mallas.Estado}</td>
                             <td>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className="btn btn-outline-primary">Alta</button>

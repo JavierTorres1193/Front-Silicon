@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
-import * as API from '../Servicios/Servicios'
+import * as API from '../../Servicios/Servicios'
 
 export function Registro(){
     const [username, setUsername] = useState('');
@@ -88,21 +88,18 @@ export function Registro(){
 
     
 
-    <a href="#" type="submit">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    Guardar
-    </a>
+    <button data-text="Awesome" class="button">
+    <span class="actual-text">&nbsp;Registrarse&nbsp;</span>
+    <span class="hover-text" aria-hidden="true">&nbsp;Registrarse&nbsp;</span>
+</button>
 
-    <Link to={'/login'}>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    Volver
-    </Link>
+<Link to={'/login'}>
+<button data-text="Awesome" class="button">
+    <span class="actual-text">&nbsp;Volver&nbsp;</span>
+    <span class="hover-text" aria-hidden="true">&nbsp;Volver&nbsp;</span>
+</button>
+</Link>
+
 
 
 

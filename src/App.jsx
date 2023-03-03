@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import { Principal } from './Componentes/Principal'
+import { Principal } from './Componentes/panel/Principal'
 import { Link,Route, Routes } from 'react-router-dom'
-import { ListaRemeras } from './componentes/remeras'
-import { ListaPantalones } from './Componentes/pantalones'
-import { ListaChanclas } from './Componentes/chanclas'
-import { ListaBuzos } from './Componentes/buzos'
-import { ListaMallas } from './Componentes/mallas'
-import { Login } from './Componentes/Login'
-import { Menu } from './Componentes/Menu'
-import {Registro} from './Componentes/Registro';
+import { ListaRemeras } from './Componentes/remeras/remeras'
+import { ListaPantalones } from './Componentes/pantalones/pantalones'
+import { ListaChanclas } from './Componentes/chanclas/chanclas'
+import { ListaBuzos } from './Componentes/buzo y camperas/buzos'
+import { ListaMallas } from './Componentes/mallas/mallas'
+import { Login } from './Componentes/login/Login'
+import { Menu } from './Componentes/panel/Menu'
+import {Registro} from './Componentes/login/Registro';
+import { Clientes } from './Componentes/usuarios/Clientes'
+import { Proveedores } from './Componentes/usuarios/Proveedores'
 
 function App() {
   return (
@@ -23,6 +25,11 @@ function App() {
           <Route path='/' element={<Principal/>}></Route> 
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/registro' element={<Registro/>}></Route>
+
+          <Route path='/clientes' element={<Clientes/>}></Route>
+          <Route path='/proveedores' element={<Proveedores/>}></Route>
+
+
           <Route path='/listarremeras' element={<ListaRemeras/>}></Route>
           <Route path='/listarpantalones' element={<ListaPantalones/>}></Route>
           <Route path='/listarchanclas' element={<ListaChanclas/>}></Route>

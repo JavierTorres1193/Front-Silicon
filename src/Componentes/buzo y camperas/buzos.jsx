@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import * as API from '../Servicios/Servicios'
+import * as API from '../../Servicios/Servicios'
 
 
-export function     ListaRemeras(){
+export function     ListaBuzos(){
 
-    const [remera, setRemeras] = useState([]);
+    const [buzos, setBuzos] = useState([]);
 
     useEffect(()=>{
-        API.remeras().then(setRemeras)
+        API.buzosycamperas().then(setBuzos)
     },[])
     
     return(
 
         <div className="card table bg-dark text-white">
         <div className="card-header">
-        Stock de Remeras
+        Stock de Buzos y Camperas
         </div>
         <div className="card-body">
         <div className="table-responsive">
@@ -28,17 +28,16 @@ export function     ListaRemeras(){
                             <th scope="col">Color</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acciones</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        {remera.map((remeras)=>(
+                        {buzos.map((buzosycamperas)=>(
                         <tr className="">
-                            <td scope="row">{remeras.idremeras}</td>
-                            <td>{remeras.Talle}</td>
-                            <td>{remeras.Cantidad}</td>
-                            <td>{remeras.Color}</td>
-                            <td>{remeras.Estado}</td>
+                            <td scope="row">{buzosycamperas.idBuzosyCamperas}</td>
+                            <td>{buzosycamperas.Talle}</td>
+                            <td>{buzosycamperas.Cantidad}</td>
+                            <td>{buzosycamperas.Color}</td>
+                            <td>{buzosycamperas.Estado}</td>
                             <td>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className="btn btn-outline-primary">Alta</button>
@@ -46,7 +45,6 @@ export function     ListaRemeras(){
                                 <button type="button" className="btn btn-outline-danger">Baja</button>
                                 </div>
                             </td>
-                        
                         </tr>
                     ))}
                     </tbody>

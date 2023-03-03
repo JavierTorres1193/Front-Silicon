@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../Componentes/Login.css'
+import '../login/Login.css'
 import { Link} from 'react-router-dom'
 
 
@@ -61,21 +61,19 @@ const [password, setPassword] = useState('')
 
     <label for="floatingPassword">Contraseña</label>
     </div>
-    <a href ='#' type='submit'>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    Ingresar
-    </a>
+    
+    <button data-text="Awesome" class="button">
+    <span class="actual-text">&nbsp;Iniciar&nbsp;</span>
+    <span class="hover-text" aria-hidden="true">&nbsp;Iniciar&nbsp;</span>
+</button>
 
-    <Link to = {'/registro'}>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    Registrarse
-    </Link>    
+<Link to={'/registro'}>
+<button data-text="Awesome" class="button">
+    <span class="actual-text">&nbsp;Registrarse&nbsp;</span>
+    <span class="hover-text" aria-hidden="true">&nbsp;Registrarse&nbsp;</span>
+</button>
+</Link>
+
   </form>
 </div>
 </div>

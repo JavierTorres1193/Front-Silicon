@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import * as API from '../Servicios/Servicios'
+import * as API from '../../Servicios/Servicios'
 
 
-export function     ListaBuzos(){
+export function     ListaPantalones(){
 
-    const [buzos, setBuzos] = useState([]);
+    const [pantalon, setPantalones] = useState([]);
 
     useEffect(()=>{
-        API.buzosycamperas().then(setBuzos)
+        API.pantalones().then(setPantalones)
     },[])
     
     return(
 
         <div className="card table bg-dark text-white">
         <div className="card-header">
-        Stock de Buzos y Camperas
+        Stock de Pantalones
         </div>
         <div className="card-body">
         <div className="table-responsive">
@@ -28,16 +28,17 @@ export function     ListaBuzos(){
                             <th scope="col">Color</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acciones</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        {buzos.map((buzosycamperas)=>(
+                        {pantalon.map((pantalones)=>(
                         <tr className="">
-                            <td scope="row">{buzosycamperas.idBuzosyCamperas}</td>
-                            <td>{buzosycamperas.Talle}</td>
-                            <td>{buzosycamperas.Cantidad}</td>
-                            <td>{buzosycamperas.Color}</td>
-                            <td>{buzosycamperas.Estado}</td>
+                            <td scope="row">{pantalones.idpantalones}</td>
+                            <td>{pantalones.Talle}</td>
+                            <td>{pantalones.Cantidad}</td>
+                            <td>{pantalones.Color}</td>
+                            <td>{pantalones.Estado}</td>
                             <td>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className="btn btn-outline-primary">Alta</button>
