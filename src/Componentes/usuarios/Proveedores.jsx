@@ -6,17 +6,73 @@ import * as API from '../../Servicios/Servicios'
 export function    Proveedores(){
 
     const [proveedor, setProveedores] = useState([]);
+    const [mensajeError, setmensajeError] = useState('')
+    const [mensajeSuccess, setmensajeSuccess] = useState('')
 
     useEffect(()=>{
-        API.proveedores().then(setProveedores)
+        API.getProovedores().then(setProveedores)
     },[])
     
+    //BOTONES//
+
+    const bajaProovedor  = async(id)=>{
+        console.log('el id que vamos a dar de baja es el',id)
+
+        const user = await API.BajaProveedores(id)
+        if(user.status){
+            
+            setmensajeError(user.mensaje)
+            setTimeout(()=>{
+                setmensajeError('')
+                window.location.reload(true)
+            }, 3000)
+
+        }else{
+            setmensajeError(user.mensaje)
+            setTimeout(()=>{
+                setmensajeError('')
+            }, 4000)
+        }
+    }
+
+    const altaProovedor = async(id)=>{
+        const user = await API.AltaProveedores(id)
+        if(user.status){
+            setmensajeSuccess(user.mensaje)
+            setTimeout(()=>{
+                setmensajeSuccess('')
+                window.location.reload(true)
+            }, 3000)
+        }else{
+            setmensajeError(user.mensaje)
+            setTimeout(()=>{
+                setmensajeError('')
+            }, 4000)
+        }
+    }
+
+
+////////////////////////////////////////////////////
+
     return(
 
         <div className="card table bg-dark text-white">
         <div className="card-header">
         Proveedores
         </div>
+        {
+                    mensajeError?
+                    <div class="alert alert-warning" role="alert">
+                     {mensajeError}
+                    </div>:''
+                }
+
+                {
+                    mensajeSuccess?
+                    <div class="alert alert-success" role="alert">
+                     {mensajeSuccess}
+                    </div>:''
+                }
         <div className="card-body">
         <div className="table-responsive">
                 <table className="table text-white">
@@ -32,7 +88,7 @@ export function    Proveedores(){
                     </thead>
                     <tbody>
                         {proveedor.map((provedor)=>(
-                        <tr className="">
+                        <tr key={provedor.idProveedores}>
                             <td scope="row">{provedor.idProveedores}</td>
                             <td>{provedor.Nombre}</td>
                             <td>{provedor.Direccion}</td>
@@ -40,10 +96,16 @@ export function    Proveedores(){
                             <td>{provedor.Estado}</td>
                             <td>
                             <div className="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" className="btn btn-outline-primary">Alta</button>
-                                <button type="button" className="btn btn-outline-secondary">Editar</button>
-                                <button type="button" className="btn btn-outline-danger">Baja</button>
+                            { (provedor.Estado=='A')? 
+                                <button onClick={() =>bajaProovedor(provedor.idProveedores,'B')}type="button" className="btn btn-outline-danger">Baja</button>
+                            
+                                :
+                                <button onClick={() => altaProovedor(provedor.idProveedores,'A')} type="button" className="btn btn-outline-primary">Alta</button>
+                                
+                            }
+                                
                                 </div>
+
                             </td>
                         </tr>
                     ))}

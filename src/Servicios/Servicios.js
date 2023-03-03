@@ -3,15 +3,22 @@ const API_URL = 'http://localhost:3300'
 //Exportar nuestras funciones
 
 
+////////////////////////////////////////////////////////
+/////////////////////CLIENTES /////////////////////////
+//////////////////////////////////////////////////////
+
+
 export async function clientes(){
     try{
-        const response = await fetch(`${API_URL}/Clientes`);
-        const data = await response.json();
-        return data;
+    const response = await fetch(`${API_URL}/Clientes`);
+    const data = await response.json();
+    return data;
 }   catch (error){
     console.log('Nuestro error es',error);
 }
 }
+
+
 
 //Funcion que trae datos
 export async function getClientes(){
@@ -73,7 +80,9 @@ export async function AltaCliente(idClientes){
 }
 
 
-
+////////////////////////////////////////////////////////
+/////////////////////PROVEEDORES //////////////////////
+//////////////////////////////////////////////////////
 
 
 
@@ -90,8 +99,73 @@ export async function proveedores(){
 
 
 
+//Funcion que trae datos
+export async function getProovedores(){
+    // const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+        //   Authorization: `Bearer ${token}`,
+        },
+      };
+      
+    try{
+        const response = await fetch(`${API_URL}/proveedores`, requestOptions);
+        const data = await response.json();
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
 
 
+
+
+// Baja y alta
+
+export async function BajaProveedores(idProveedores){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/bajaproveedores/${idProveedores}`, requestOptions)
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+export async function AltaProveedores(idProveedores){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/altaproveedores/${idProveedores}`, requestOptions)
+        const data = await response.json();
+        // console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+
+
+////////////////////////////////////////////////////////
+/////////////////////PRODUCTOS /////////////////////////
+//////////////////////////////////////////////////////
 
 
 
@@ -106,6 +180,69 @@ export async function buzosycamperas(){
     console.log('Nuestro error es',error);
 }
 }
+
+//Funcion que trae datos
+export async function getBuzosyCamperas(){
+    // const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+        //   Authorization: `Bearer ${token}`,
+        },
+      };
+      
+    try{
+        const response = await fetch(`${API_URL}/buzosycamperas`, requestOptions);
+        const data = await response.json();
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+// Baja y alta
+
+export async function BajaBuzosyCamperas(idBuzosyCamperas){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/bajabuzosycamperas/${idBuzosyCamperas}`, requestOptions)
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+export async function AltaBuzosyCamperas(idBuzosyCamperas){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/altabuzosycamperas/${idBuzosyCamperas}`, requestOptions)
+        const data = await response.json();
+        // console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+
+
+
 
 
 

@@ -6,10 +6,55 @@ import * as API from '../../Servicios/Servicios'
 export function     ListaBuzos(){
 
     const [buzos, setBuzos] = useState([]);
+    const [mensajeError, setmensajeError] = useState('')
+    const [mensajeSuccess, setmensajeSuccess] = useState('')
+
+
 
     useEffect(()=>{
-        API.buzosycamperas().then(setBuzos)
+        API.getBuzosyCamperas().then(setBuzos)
     },[])
+
+    const bajaBuzosyCamperas = async(id)=>{
+        console.log('el id que vamos a dar de baja es el',id)
+
+        const user = await API.BajaBuzosyCamperas(id)
+        if(user.status){
+            
+            setmensajeError(user.mensaje)
+            setTimeout(()=>{
+                setmensajeError('')
+                window.location.reload(true)
+            }, 3000)
+
+        }else{
+            setmensajeError(user.mensaje)
+            setTimeout(()=>{
+                setmensajeError('')
+            }, 4000)
+        }
+    }
+
+    const altaBuzosyCamperas = async(id)=>{
+        const user = await API.AltaBuzosyCamperas(id)
+        if(user.status){
+            setmensajeSuccess(user.mensaje)
+            setTimeout(()=>{
+                setmensajeSuccess('')
+                window.location.reload(true)
+            }, 3000)
+        }else{
+            setmensajeError(user.mensaje)
+            setTimeout(()=>{
+                setmensajeError('')
+            }, 4000)
+        }
+    }
+
+
+////////////////////////////////////////////////////
+
+
     
     return(
 
@@ -17,6 +62,20 @@ export function     ListaBuzos(){
         <div className="card-header">
         Stock de Buzos y Camperas
         </div>
+        {
+                    mensajeError?
+                    <div class="alert alert-warning" role="alert">
+                     {mensajeError}
+                    </div>:''
+                }
+
+                {
+                    mensajeSuccess?
+                    <div class="alert alert-success" role="alert">
+                     {mensajeSuccess}
+                    </div>:''
+                }
+
         <div className="card-body">
         <div className="table-responsive">
                 <table className="table text-white">
@@ -32,18 +91,22 @@ export function     ListaBuzos(){
                     </thead>
                     <tbody>
                         {buzos.map((buzosycamperas)=>(
-                        <tr className="">
+                        <tr key={buzosycamperas.idBuzosyCamperas}>
                             <td scope="row">{buzosycamperas.idBuzosyCamperas}</td>
                             <td>{buzosycamperas.Talle}</td>
                             <td>{buzosycamperas.Cantidad}</td>
                             <td>{buzosycamperas.Color}</td>
                             <td>{buzosycamperas.Estado}</td>
                             <td>
+
                             <div className="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" className="btn btn-outline-primary">Alta</button>
-                                <button type="button" className="btn btn-outline-secondary">Editar</button>
-                                <button type="button" className="btn btn-outline-danger">Baja</button>
+                            { (buzosycamperas.Estado=='A')? 
+                                <button onClick={() => bajaBuzosyCamperas(buzosycamperas.idBuzosyCamperas,'B')} type="button" className="btn btn-outline-danger">Baja</button>
+                                :
+                                <button onClick={() => altaBuzosyCamperas(buzosycamperas.idBuzosyCamperas,'B')}type="button" className="btn btn-outline-primary">Alta</button>
+                        }
                                 </div>
+                        
                             </td>
                         </tr>
                     ))}

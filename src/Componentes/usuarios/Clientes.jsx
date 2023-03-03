@@ -7,7 +7,6 @@ import * as API from '../../Servicios/Servicios'
 export function Clientes(){
 
     const [cliente, setClientes] = useState([]);
-
     const [mensajeError, setmensajeError] = useState('')
     const [mensajeSuccess, setmensajeSuccess] = useState('')
 
