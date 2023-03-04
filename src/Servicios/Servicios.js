@@ -269,8 +269,7 @@ export async function AltaBuzosyCamperas(idBuzosyCamperas){
 
 
 
-
-
+///////////////////CHANCLAS///////////////////////
 
 
 export async function chanclas(){
@@ -283,8 +282,68 @@ export async function chanclas(){
 }
 }
 
+//Funcion que trae datos
+export async function getChanclas(){
+    // const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+        //   Authorization: `Bearer ${token}`,
+        },
+      };
+      
+    try{
+        const response = await fetch(`${API_URL}/chanclas`, requestOptions);
+        const data = await response.json();
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+// Baja y alta
+
+export async function BajaChanclas(idChanclas){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/bajachanclas/${idChanclas}`, requestOptions)
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+export async function AltaChanclas(idChanclas){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/altachanclas/${idChanclas}`, requestOptions)
+        const data = await response.json();
+        // console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
 
 
+
+//  MALLAS //
 
 export async function mallas(){
     try{
@@ -296,7 +355,70 @@ export async function mallas(){
 }
 }
 
+//Funcion que trae datos
+export async function getMallas(){
+    // const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+        //   Authorization: `Bearer ${token}`,
+        },
+      };
+      
+    try{
+        const response = await fetch(`${API_URL}/mallas`, requestOptions);
+        const data = await response.json();
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
 
+// Baja y alta
+
+export async function BajaMallas(idMallas){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/bajamallas/${idMallas}`, requestOptions)
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+export async function AltaMallas(idMallas){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/altamallas/${idMallas}`, requestOptions)
+        const data = await response.json();
+        // console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+
+
+
+
+// PANTALONES //
 export async function pantalones(){
     try{
         const response = await fetch(`${API_URL}/pantalones`);
@@ -306,7 +428,68 @@ export async function pantalones(){
     console.log('Nuestro error es',error);
 }
 }
+//funcion pantalones get//
+export async function getPantalones(){
+    // const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+        //   Authorization: `Bearer ${token}`,
+        },
+      };
+      
+    try{
+        const response = await fetch(`${API_URL}/pantalones`, requestOptions);
+        const data = await response.json();
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
 
+// Baja y alta
+
+export async function BajaPantalones(idPantalones){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/bajapantalones/${idPantalones}`, requestOptions)
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+export async function AltaPantalones(idPantalones){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/altapantalones/${idPantalones}`, requestOptions)
+        const data = await response.json();
+        // console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+
+
+// REMERAS //
 export async function remeras(){
     try{
         const response = await fetch(`${API_URL}/remeras`);
@@ -316,6 +499,67 @@ export async function remeras(){
     console.log('Nuestro error es',error);
 }
 }
+
+//Funcion que trae datos
+export async function getRemeras(){
+    // const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+        //   Authorization: `Bearer ${token}`,
+        },
+      };
+      
+    try{
+        const response = await fetch(`${API_URL}/remeras`, requestOptions);
+        const data = await response.json();
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+// Baja y alta
+
+export async function BajaRemeras(idRemeras){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/bajaremeras/${idRemeras}`, requestOptions)
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+export async function AltaRemeras(idRemeras){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try{
+        const response = await fetch(`${API_URL}/altaremeras/${idRemeras}`, requestOptions)
+        const data = await response.json();
+        // console.log(data)
+        return data;
+    } catch(e){
+
+        alert('No se puede conectar con el servidor')
+    }
+}
+
+////////LOGIN//////////////
 
 
 export async function Login(datos){
