@@ -4,12 +4,12 @@ import { Principal } from './Principal'
 export function Menu(){
     return(
         <nav className="navbar navbar-expand-lg">
-  <a className="navbar-brand text-light">Banzai Clothes</a>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <a className="navbar-brand text-light" href='/'>Banzai Clothes</a>
+  <button className="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
-  <div className="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul className="navbar-nav">
+  <div className="collapse navbar-collapse " id="navbarNavDropdown">
+    <ul className="navbar-nav ">
       <li className="nav-item active">
       <Link className="nav-link text-light"to={'/'}>Inicio</Link>
       </li>

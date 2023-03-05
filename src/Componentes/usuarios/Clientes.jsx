@@ -1,22 +1,57 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
-// import DataTable from 'react-data-table-component'
 import * as API from '../../Servicios/Servicios'
-
+// import { EditClientes } from './EditClientes'
 
 export function Clientes(){
 
     const [cliente, setClientes] = useState([]);
+    // const [Nombre, setNombre] = useState('');
+    // const [Direccion, setDireccion] = useState('');
+    // const [Telefono, setTelefono] = useState('');
     const [mensajeError, setmensajeError] = useState('')
     const [mensajeSuccess, setmensajeSuccess] = useState('')
-
+    // const [id_cliente_editar, setIDClienteditar] = useState([]);
 
 
     useEffect(()=>{
         API.getClientes().then(setClientes)
     },[])
     
+    // const trae_datos_a_editar  = async(idClientes)=>{
+    //     setIDClienteditar(idClientes)
+    //     const datos_cliente = await API.getClientes(idClientes)
+    //     console.log(datos_cliente)
+    //     setCurso(datos_cliente.Nombre)
+    //     setCurso(datos_cliente.Direccion)
+    //     setCurso(datos_cliente.Telefono)
+
+        
+    // }
+
+//  const columns = [
+//         {
+//           name: 'IdClientes',
+//           selector: row => row.idClientes
+//         },
+//         {
+//           name: 'Nombre',
+//           selector: row => row.Nombre,
+//         },
+//         {
+//           name: 'Direccion',
+//           selector: row => row.Direccion,
+//         },
+//         {
+//           name: 'Telefono',
+//           selector: row => row.Telefono
+//         }
+
+        
+//     ]
+
+
 
     //BOTONES//
 
@@ -59,29 +94,17 @@ export function Clientes(){
 
 //////////////////////Edit//////////////////////////////
 
-const columns = [
-    {
-      name: 'Nombre',
-      selector: row => row.idClientes
-    },
-    {
-      name: 'Direccion',
-      selector: row => row.Direccion,
-    },
-    {
-      name: 'Telefono',
-      selector: row => row.Telefono
-    }
-]
-
+   
 ////////////////////////////////////////////////////
 
 
     return(
 
         <div className="card table bg-dark text-white">
+            
         <div className="card-header">
         Clientes
+       
         </div>
         {
                     mensajeError?
@@ -96,8 +119,11 @@ const columns = [
                      {mensajeSuccess}
                     </div>:''
                 }
+                
         <div className="card-body">
+        <Link name="" id="" className="btn btn-outline-secondary" to={``} role="button">Crear Cliente </Link>
         <div className="table-responsive">
+            
                 <table className="table text-white">
                     <thead>
                         <tr>
@@ -126,7 +152,7 @@ const columns = [
                                 <button onClick={() =>altaCliente(clientes.idClientes,'A')} type="button" className="btn btn-outline-primary">Alta</button>
 
                                 }
-                                <Link name="" id="" className="btn btn-outline-secondary" to={'/crear_cliente'} role="button">Editar </Link>
+                                <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_clientes/${clientes.idClientes}`} role="button">Editar </Link>
                                 {/* <DataTable columns={columns} data={cliente} /> */}
 
                                 </div>

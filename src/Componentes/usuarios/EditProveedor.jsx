@@ -2,14 +2,14 @@ import React, { useEffect,useState } from 'react'
 import { Link, useParams} from 'react-router-dom';
 import * as API from '../../servicios/servicios'
 
-export function EditCliente(){
+export function EditProveedores(){
 
-    const [setClientes] = useState('')
+    const [setProveedores] = useState('')
     const [mensajeSuccess, setmensajeSuccess] = useState('')
     const [Nombre, setNombre] = useState('');
     const [Direccion, setDireccion] = useState('');
     const [Telefono, setTelefono] = useState('');
-    const {idClientes} = useParams();
+    const {idProveedores} = useParams();
 
 
 
@@ -17,20 +17,20 @@ export function EditCliente(){
 
     useEffect(()=>{
         // trae_datos(idClientes)
-        API.getClienteById(idClientes).then(setClientes)
+        API.getProveedorById(idProveedores).then(setProveedores)
     },[])
 
 
    
 
 
-    const editar_cliente = ()=>{
+    const editar_proveedor = ()=>{
         const datos_enviar={
             Nombre: Nombre,
             Direccion: Direccion,
             Telefono: Telefono
         };
-        API.UpdateCliente(idClientes,datos_enviar);
+        API.UpdateProovedor(idProveedores,datos_enviar);
         // nombre_curso.current.value=null;
         
         setmensajeSuccess('Se Edito el cliente')
@@ -44,7 +44,7 @@ export function EditCliente(){
     return(
         <div className="card table bg-dark text-white">
             <div className="card-header">
-                Edicion de los datos del cliente
+                Edicion de los datos del proovedor
             </div>
             {
                 mensajeSuccess?
@@ -87,10 +87,10 @@ export function EditCliente(){
                 <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
                             
-                <button onClick={editar_cliente} type="button" className="btn btn-outline-secondary text-success">Guardar</button>
+                <button onClick={editar_proveedor} type="button" className="btn btn-outline-secondary text-success">Guardar</button>
                 <small id="helpId" className="text-muted">&nbsp;</small>
 
-                <Link to={'/clientes'}>
+                <Link to={'/proveedores'}>
                 <button type="button" className="btn btn-outline-secondary text-primary">Volver a la lista</button>
                 </Link>
                 

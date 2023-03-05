@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import {Link} from 'react-router-dom'
 import * as API from '../../Servicios/Servicios'
 
 
@@ -105,6 +106,8 @@ export function     ListaPantalones(){
                                 :
                                 <button onClick={() => altaPantalones(pantalones.idPantalones,'B')}type="button" className="btn btn-outline-primary">Alta</button>
                         }
+                                <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_pantalones/${pantalones.idPantalones}`} role="button">Editar </Link>
+
                                 </div>
                         
                             </td>

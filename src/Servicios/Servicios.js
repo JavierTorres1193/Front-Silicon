@@ -40,6 +40,24 @@ export async function getClientes(){
     }
 }
 
+
+
+
+
+export async function getClienteById(idClientes){
+    try{
+        const response = await fetch(`${API_URL}/clientes/${idClientes}`);
+        const data = await response.json();
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+
+
+
 // Baja y alta
 
 export async function BajaCliente(idClientes){
@@ -89,22 +107,22 @@ export function UpdateCliente(idClientes, datos){
         },
         body: JSON.stringify(datos)
     };
-    fetch(`${API_URL}/clientes/${idClientes}`, requestOptions)
+    fetch(`${API_URL}/edit_clientes/${idClientes}`, requestOptions)
     
 }
 
 
-export function SaveCliente(datos){
-    const requestOptions={
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(datos)
-    };
-    fetch(`${API_URL}/clientes`, requestOptions)
+// export function SaveCliente(datos){
+//     const requestOptions={
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(datos)
+//     };
+//     fetch(`${API_URL}/clientes`, requestOptions)
     
-}
+// }
 
 
 ////////////////////////////////////////////////////////
@@ -145,6 +163,19 @@ export async function getProovedores(){
         console.log('Nuestro error', error);
     }
 }
+
+
+export async function getProveedorById(idProveedores){
+    try{
+        const response = await fetch(`${API_URL}/proveedores/${idProveedores}`);
+        const data = await response.json();
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
 
 
 
@@ -188,6 +219,17 @@ export async function AltaProveedores(idProveedores){
     }
 }
 
+export function UpdateProovedor(idProveedores, datos){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/edit_proveedor/${idProveedores}`, requestOptions)
+    
+}
 
 
 ////////////////////////////////////////////////////////
@@ -227,6 +269,20 @@ export async function getBuzosyCamperas(){
         console.log('Nuestro error', error);
     }
 }
+
+
+export async function getBuzosyCamperasById(idBuzosyCamperas){
+    try{
+        const response = await fetch(`${API_URL}/buzosycamperas/${idBuzosyCamperas}`);
+        const data = await response.json();
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+
 
 // Baja y alta
 
@@ -268,6 +324,19 @@ export async function AltaBuzosyCamperas(idBuzosyCamperas){
 }
 
 
+export function UpdateBuzosyCamperas(idBuzosyCamperas, datos){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/edit_buzosycamperas/${idBuzosyCamperas}`, requestOptions)
+    
+}
+
+
 
 ///////////////////CHANCLAS///////////////////////
 
@@ -301,6 +370,31 @@ export async function getChanclas(){
         console.log('Nuestro error', error);
     }
 }
+
+export async function getChanclasById(idChanclas){
+    try{
+        const response = await fetch(`${API_URL}/chanclas/${idChanclas}`);
+        const data = await response.json();
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+export function UpdateChanclas(idChanclas, datos){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/edit_chanclas/${idChanclas}`, requestOptions)
+    
+}
+
+
 
 // Baja y alta
 
@@ -375,6 +469,30 @@ export async function getMallas(){
     }
 }
 
+export async function getMallasById(idMallas){
+    try{
+        const response = await fetch(`${API_URL}/mallas/${idMallas}`);
+        const data = await response.json();
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+export function UpdateMallas(idMallas, datos){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/edit_mallas/${idMallas}`, requestOptions)
+    
+}
+
+
 // Baja y alta
 
 export async function BajaMallas(idMallas){
@@ -447,6 +565,32 @@ export async function getPantalones(){
         console.log('Nuestro error', error);
     }
 }
+
+
+export async function getPantalonesById(idPantalones){
+    try{
+        const response = await fetch(`${API_URL}/pantalones/${idPantalones}`);
+        const data = await response.json();
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+export function UpdatePantalones(idPantalones, datos){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/edit_pantalones/${idPantalones}`, requestOptions)
+    
+}
+
+
 
 // Baja y alta
 
@@ -558,6 +702,31 @@ export async function AltaRemeras(idRemeras){
         alert('No se puede conectar con el servidor')
     }
 }
+
+
+export async function getRemerasById(idRemeras){
+    try{
+        const response = await fetch(`${API_URL}/remeras/${idRemeras}`);
+        const data = await response.json();
+        console.log(data)
+        return data;
+    }catch(error){
+        console.log('Nuestro error', error);
+    }
+}
+
+export function UpdateRemeras(idRemeras, datos){
+    const requestOptions={
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/edit_remeras/${idRemeras}`, requestOptions)
+    
+}
+
 
 ////////LOGIN//////////////
 

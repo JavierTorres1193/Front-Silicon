@@ -2,14 +2,14 @@ import React, { useEffect,useState } from 'react'
 import { Link, useParams} from 'react-router-dom';
 import * as API from '../../servicios/servicios'
 
-export function EditCliente(){
+export function EditBuzosyCamperas(){
 
-    const [setClientes] = useState('')
+    const [setBuzosyCamperas] = useState('')
     const [mensajeSuccess, setmensajeSuccess] = useState('')
-    const [Nombre, setNombre] = useState('');
-    const [Direccion, setDireccion] = useState('');
-    const [Telefono, setTelefono] = useState('');
-    const {idClientes} = useParams();
+    const [Talle, setTalle] = useState('');
+    const [Color, setColor] = useState('');
+    const [Cantidad, setCantidad] = useState('');
+    const {idBuzosyCamperas} = useParams();
 
 
 
@@ -17,23 +17,23 @@ export function EditCliente(){
 
     useEffect(()=>{
         // trae_datos(idClientes)
-        API.getClienteById(idClientes).then(setClientes)
+        API.getBuzosyCamperasById(idBuzosyCamperas).then(setBuzosyCamperas)
     },[])
 
 
    
 
 
-    const editar_cliente = ()=>{
+    const editar_buzosycamperas = ()=>{
         const datos_enviar={
-            Nombre: Nombre,
-            Direccion: Direccion,
-            Telefono: Telefono
+            Talle: Talle,
+            Color: Color,
+            Cantidad: Cantidad
         };
-        API.UpdateCliente(idClientes,datos_enviar);
+        API.UpdateBuzosyCamperas(idBuzosyCamperas,datos_enviar);
         // nombre_curso.current.value=null;
         
-        setmensajeSuccess('Se Edito el cliente')
+        setmensajeSuccess('Se edito el producto')
             setTimeout(()=>{
                 setmensajeSuccess('')
                 // window.location.reload(true)
@@ -44,7 +44,7 @@ export function EditCliente(){
     return(
         <div className="card table bg-dark text-white">
             <div className="card-header">
-                Edicion de los datos del cliente
+                Edicion de los datos del producto
             </div>
             {
                 mensajeSuccess?
@@ -56,29 +56,29 @@ export function EditCliente(){
                 <div className='row'>
 
                 <div className="form-group col-4" >
-                  <label for="">Nombre</label>
+                  <label for="">Talle</label>
                   <input 
                   type="text"
-                   value={Nombre} 
-                    onChange={(event)=>setNombre(event.target.value)}
+                   value={Talle} 
+                    onChange={(event)=>setTalle(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
                 <div className="form-group col-4">
-                  <label for="">Direccion</label>
+                  <label for="">Color</label>
                   <input 
                   type="text"
-                   value={Direccion} 
-                   onChange={(event)=>setDireccion(event.target.value)}
+                   value={Color} 
+                   onChange={(event)=>setColor(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
                 <div className="form-group col-4">
-                  <label for="">Telefono</label>
+                  <label for="">Cantidad</label>
                   <input 
                   type="text"
-                   value={Telefono} 
-                   onChange={(event)=>setTelefono(event.target.value)}
+                   value={Cantidad} 
+                   onChange={(event)=>setCantidad(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted ">&nbsp;</small>
                 </div>
@@ -87,10 +87,10 @@ export function EditCliente(){
                 <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
                             
-                <button onClick={editar_cliente} type="button" className="btn btn-outline-secondary text-success">Guardar</button>
+                <button onClick={editar_buzosycamperas} type="button" className="btn btn-outline-secondary text-success">Guardar</button>
                 <small id="helpId" className="text-muted">&nbsp;</small>
 
-                <Link to={'/clientes'}>
+                <Link to={'/listarbuzosycamperas'}>
                 <button type="button" className="btn btn-outline-secondary text-primary">Volver a la lista</button>
                 </Link>
                 

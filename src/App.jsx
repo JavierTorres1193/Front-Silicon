@@ -13,7 +13,12 @@ import { Menu } from './Componentes/panel/Menu'
 import {Registro} from './Componentes/login/Registro';
 import { Clientes } from './Componentes/usuarios/Clientes'
 import { Proveedores } from './Componentes/usuarios/Proveedores'
-import { CreaCliente } from './Componentes/usuarios/EditClientes'
+import { EditCliente } from './Componentes/usuarios/EditClientes'
+import { EditProveedores } from './Componentes/usuarios/EditProveedor'
+import { EditBuzosyCamperas } from './Componentes/buzo y camperas/EditBuzosyCamperas'
+import { EditPantalones } from './Componentes/pantalones/EditPantalones'
+import { EditMallas } from './Componentes/mallas/EditMallas'
+import { EditRemeras } from './Componentes/remeras/EditRemeras'
 
 function App() {
   return (
@@ -28,15 +33,34 @@ function App() {
           <Route path='/registro' element={<Registro/>}></Route>
 
           <Route path='/clientes' element={<Clientes/>}></Route>
-          <Route path='/proveedores' element={<Proveedores/>}></Route>
 
-          <Route path='/crear_cliente' element={<CreaCliente/>} ></Route>
+          <Route path='/proveedores' element={<Proveedores/>}></Route>
+         
+
+          <Route path='/edit_clientes/:idClientes' element={<EditCliente/>} ></Route>
+          <Route path='/edit_proveedores/:idProveedores' element={<EditProveedores/>} ></Route>
+
 
           <Route path='/listarremeras' element={<ListaRemeras/>}></Route>
+          <Route path='/edit_remeras/:idRemeras' element={<EditRemeras/>}></Route>
+
+
           <Route path='/listarpantalones' element={<ListaPantalones/>}></Route>
+          <Route path='/edit_pantalones/:idPantalones' element={<EditPantalones/>}></Route>
+
+
           <Route path='/listarchanclas' element={<ListaChanclas/>}></Route>
+          <Route path='/edit_chanclas/:idChanclas' element={<EditBuzosyCamperas/>}></Route>
+
+
+
           <Route path='/listarbuzosycamperas' element={<ListaBuzos/>}></Route>
+          <Route path='/edit_buzosycamperas/:idBuzosyCamperas' element={<EditBuzosyCamperas/>}></Route>
+          
+
           <Route path='/listarmallas' element={<ListaMallas/>}></Route>
+          <Route path='/edit_mallas/:idMallas' element={<EditMallas/>}></Route>
+
         </Routes>
         </div>
     

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import {Link} from 'react-router-dom'
 import * as API from '../../Servicios/Servicios'
 
 
@@ -105,6 +106,8 @@ export function     ListaChanclas(){
                                 :
                                 <button onClick={() => altaChanclas(chanclas.idChanclas,'B')}type="button" className="btn btn-outline-primary">Alta</button>
                         }
+                                <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_chanclas/${chanclas.idChanclas}`} role="button">Editar </Link>
+
                                 </div>
                         
                             </td>
