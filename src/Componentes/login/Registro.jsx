@@ -10,6 +10,7 @@ export function Registro(){
     const [mensajeSuccess, setmensajeSuccess] = useState('');
 
 
+
     const registroForm  = async (event)=>{
         event.preventDefault();
         const user = await API.Registro({username, password, email, apellido_nombre})
@@ -88,12 +89,12 @@ export function Registro(){
 
     
 
-    <button data-text="Awesome" class="button">
+    <button type="submit" data-text="Awesome" class="button">
     <span class="actual-text">&nbsp;Registrarse&nbsp;</span>
     <span class="hover-text" aria-hidden="true">&nbsp;Registrarse&nbsp;</span>
 </button>
 
-<Link to={'/login'}>
+<Link to={'/'}>
 <button data-text="Awesome" class="button">
     <span class="actual-text">&nbsp;Volver&nbsp;</span>
     <span class="hover-text" aria-hidden="true">&nbsp;Volver&nbsp;</span>
@@ -109,4 +110,4 @@ export function Registro(){
         </div>
         </>
     )
-}
+    }

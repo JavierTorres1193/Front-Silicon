@@ -73,18 +73,26 @@ export function    Proveedores(){
                     <div class="alert alert-success" role="alert">
                      {mensajeSuccess}
                     </div>:''
-                }
+                }   
         <div className="card-body">
+        {/* <Link to = {'/crear_proveedor'}role="button" className="btn btn-outline-primary">Agregar Proveedor</Link> */}
         <div className="table-responsive">
+        
+
                 <table className="table text-white">
+
                     <thead>
+        <Link to = {'/crear_proveedor'}role="button" className="btn btn-outline-primary">Agregar Proveedor</Link>
+
                         <tr>
+                            
                             <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Dirección</th>
                             <th scope="col">Telefono</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acciones</th>
+                            
                         </tr>
                     </thead>
                     <tbody>

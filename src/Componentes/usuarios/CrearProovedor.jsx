@@ -1,50 +1,35 @@
-import React, { useEffect,useState } from 'react'
-import { Link, useParams} from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import * as API from '../../servicios/servicios'
 
-export function EditProveedores(){
+export function CrearProveedor(){
 
-    const [setProveedores] = useState('')
+    
     const [mensajeSuccess, setmensajeSuccess] = useState('')
     const [Nombre, setNombre] = useState('');
     const [Direccion, setDireccion] = useState('');
     const [Telefono, setTelefono] = useState('');
-    const {idProveedores} = useParams();
-
-
-
-
-
-    useEffect(()=>{
-        // trae_datos(idClientes)
-        API.getProveedorById(idProveedores).then(setProveedores)
-    },[])
-
-
-   
-
-
-    const editar_proveedor = ()=>{
-        const datos_enviar={
+    
+    
+    const crear_proveedor = ()=>{
+        const datos_proveedor={
             Nombre: Nombre,
             Direccion: Direccion,
-            Telefono: Telefono
+            Telefono: Telefono 
         };
-        API.UpdateProovedor(idProveedores,datos_enviar);
-        // nombre_curso.current.value=null;
-        
-        setmensajeSuccess('Se Edito el cliente')
+        console.log(datos_proveedor)
+        API.SaveProveedor(datos_proveedor);
+        setmensajeSuccess('Se agrego al proveedor')
             setTimeout(()=>{
                 setmensajeSuccess('')
-                window.location.reload(true)
+                // window.location.href('/proveedores')
             }, 2000)
-        }
-
+    }
 
     return(
         <div className="card table bg-dark text-white">
             <div className="card-header">
-                Edicion de los datos del proovedor
+                Agregar Proveedor Nuevo
             </div>
             {
                 mensajeSuccess?
@@ -52,7 +37,7 @@ export function EditProveedores(){
                     {mensajeSuccess}
                 </div>:''
             }
-            <div className="card-body ">
+            <div className="card-body">
                 <div className='row'>
 
                 <div className="form-group col-4" >
@@ -60,7 +45,7 @@ export function EditProveedores(){
                   <input 
                   type="text"
                    value={Nombre} 
-                    onChange={(event)=>setNombre(event.target.value)}
+                   onChange={(event)=>setNombre(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
@@ -80,25 +65,20 @@ export function EditProveedores(){
                    value={Telefono} 
                    onChange={(event)=>setTelefono(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
-                  <small id="helpId" className="text-muted ">&nbsp;</small>
+                  <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
-        
-                </div>
-                <td>
-                <div className="btn-group" role="group" aria-label="Basic example">
-                            
-                <button onClick={editar_proveedor} type="button" className="btn btn-outline-secondary text-success">Guardar</button>
-                <small id="helpId" className="text-muted">&nbsp;</small>
-
-                <Link to={'/proveedores'}>
-                <button type="button" className="btn btn-outline-secondary text-primary">Volver a la lista</button>
-                </Link>
                 
-                                
+                <div className="row">
+                    <div className='col-3 mt-3'>
+                        <button  onClick={crear_proveedor}  type="button" className="btn btn-outline-secondary text-success">Agregar</button>
+                        <small id="helpId" className="text-muted">&nbsp;</small>
+
+                        <Link to={'/proveedores'}><button type="button" className="btn btn-outline-secondary text-primary">Volver al listado</button></Link>
+                    </div>
                 </div>
-                </td>
             </div>
             
         </div>
+        </div>
     )
-        }
+}

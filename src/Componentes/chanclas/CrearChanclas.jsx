@@ -1,50 +1,35 @@
-import React, { useEffect,useState } from 'react'
-import { Link, useParams} from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import * as API from '../../servicios/servicios'
 
-export function EditMallas(){
+export function CrearChanclas(){
 
-    const [setMallas] = useState('')
+    
     const [mensajeSuccess, setmensajeSuccess] = useState('')
     const [Talle, setTalle] = useState('');
-    const [Color, setColor] = useState('');
     const [Cantidad, setCantidad] = useState('');
-    const {idMallas} = useParams();
-
-
-
-
-
-    useEffect(()=>{
-        // trae_datos(idClientes)
-        API.getMallasById(idMallas).then(setMallas)
-    },[])
-
-
-   
-
-
-    const editar_mallas = ()=>{
-        const datos_enviar={
+    const [Color, setColor] = useState('');
+    
+    
+    const crear_chanclas = ()=>{
+        const datos_chanclas={
             Talle: Talle,
             Cantidad: Cantidad,
-            Color: Color
+            Color: Color 
         };
-        API.UpdateMallas(idMallas,datos_enviar);
-        // nombre_curso.current.value=null;
-        
-        setmensajeSuccess('Se edito el producto')
+        console.log(datos_chanclas)
+        API.SaveChanclas(datos_chanclas);
+        setmensajeSuccess('Se agrego el producto')
             setTimeout(()=>{
                 setmensajeSuccess('')
-                window.location.reload(true)
+                // window.location.href('/listarmallas')
             }, 2000)
-        }
-
+    }
 
     return(
         <div className="card table bg-dark text-white">
             <div className="card-header">
-                Edicion de los datos del producto
+                Agregar Producto Nuevo
             </div>
             {
                 mensajeSuccess?
@@ -52,7 +37,7 @@ export function EditMallas(){
                     {mensajeSuccess}
                 </div>:''
             }
-            <div className="card-body ">
+            <div className="card-body">
                 <div className='row'>
 
                 <div className="form-group col-4" >
@@ -60,7 +45,7 @@ export function EditMallas(){
                   <input 
                   type="text"
                    value={Talle} 
-                    onChange={(event)=>setTalle(event.target.value)}
+                   onChange={(event)=>setTalle(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
@@ -80,25 +65,20 @@ export function EditMallas(){
                    value={Color} 
                    onChange={(event)=>setColor(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
-                  <small id="helpId" className="text-muted ">&nbsp;</small>
+                  <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
-        
-                </div>
-                <td>
-                <div className="btn-group" role="group" aria-label="Basic example">
-                            
-                <button onClick={editar_mallas} type="button" className="btn btn-outline-secondary text-success">Guardar</button>
-                <small id="helpId" className="text-muted">&nbsp;</small>
-
-                <Link to={'/listarmallas'}>
-                <button type="button" className="btn btn-outline-secondary text-primary">Volver a la lista</button>
-                </Link>
                 
-                                
+                <div className="row">
+                    <div className='col-3 mt-3'>
+                        <button  onClick={crear_chanclas}  type="button" className="btn btn-outline-secondary text-success">Agregar</button>
+                        <small id="helpId" className="text-muted">&nbsp;</small>
+
+                        <Link to={'/listarchanclas'}><button type="button" className="btn btn-outline-secondary text-primary">Volver al listado</button></Link>
+                    </div>
                 </div>
-                </td>
             </div>
             
         </div>
+        </div>
     )
-        }
+}

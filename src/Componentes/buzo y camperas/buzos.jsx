@@ -81,6 +81,8 @@ export function     ListaBuzos(){
         <div className="table-responsive">
                 <table className="table text-white">
                     <thead>
+        <Link to = {'/crear_buzosycamperas'}role="button" className="btn btn-outline-primary">Agregar Producto</Link>
+
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Talle</th>

@@ -36,7 +36,7 @@ export function EditCliente(){
         setmensajeSuccess('Se Edito el cliente')
             setTimeout(()=>{
                 setmensajeSuccess('')
-                // window.location.reload(true)
+                window.location.reload(true)
             }, 2000)
         }
 

@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom'
 import { Principal } from './Principal'
+import { useState } from "react"
+import * as API from '../../Servicios/Servicios'
+
 
 export function Menu(){
+
+  const [usuario, setUsuario] = useState('')
+  const logout  = async (event)=>{
+          setUsuario('')
+          window.localStorage.removeItem('usuario')
+          window.location.reload(true);
+  }
+
     return(
         <nav className="navbar navbar-expand-lg">
   <a className="navbar-brand text-light" href='/'>Banzai Clothes</a>
@@ -41,7 +52,7 @@ export function Menu(){
         </div>
       </li>
       <li className="nav-item active">
-      <Link className="nav-link text-danger"to={'/login'}>Salir</Link>
+      <button onClick={logout} className="nav-link text-danger"to={'/'}>Salir</button>
       </li>
     </ul>
   </div>

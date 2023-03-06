@@ -232,6 +232,21 @@ export function UpdateProovedor(idProveedores, datos){
 }
 
 
+
+export function SaveProveedor(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/proveedores`, requestOptions)
+    
+}
+
+
+
 ////////////////////////////////////////////////////////
 /////////////////////PRODUCTOS /////////////////////////
 //////////////////////////////////////////////////////
@@ -336,6 +351,18 @@ export function UpdateBuzosyCamperas(idBuzosyCamperas, datos){
     
 }
 
+export function SaveBuzosyCamperas(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/listarbuzosycamperas`, requestOptions)
+    
+}
+
 
 
 ///////////////////CHANCLAS///////////////////////
@@ -437,6 +464,21 @@ export async function AltaChanclas(idChanclas){
 
 
 
+export function SaveChanclas(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/listarchanclas`, requestOptions)
+    
+}
+
+
+
+
 //  MALLAS //
 
 export async function mallas(){
@@ -530,6 +572,20 @@ export async function AltaMallas(idMallas){
 
         alert('No se puede conectar con el servidor')
     }
+}
+
+
+
+export function SaveMallas(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/listarmallas`, requestOptions)
+    
 }
 
 
@@ -632,6 +688,19 @@ export async function AltaPantalones(idPantalones){
 }
 
 
+export function SavePantalones(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/listarpantalones`, requestOptions)
+    
+}
+
+
 
 // REMERAS //
 export async function remeras(){
@@ -728,10 +797,24 @@ export function UpdateRemeras(idRemeras, datos){
 }
 
 
+export function SaveRemeras(datos){
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/listarremeras`, requestOptions)
+    
+}
+
+
+
 ////////LOGIN//////////////
 
 
-export async function Login(datos){
+export async function Login (datos){
     const requestOptions={
         method: 'POST',
         headers: {

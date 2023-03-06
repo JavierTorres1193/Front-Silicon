@@ -27,8 +27,8 @@ export function EditPantalones(){
     const editar_pantalones = ()=>{
         const datos_enviar={
             Talle: Talle,
-            Color: Color,
-            Cantidad: Cantidad
+            Cantidad: Cantidad,
+            Color: Color
         };
         API.UpdatePantalones(idPantalones,datos_enviar);
         // nombre_curso.current.value=null;
@@ -36,7 +36,7 @@ export function EditPantalones(){
         setmensajeSuccess('Se edito el producto')
             setTimeout(()=>{
                 setmensajeSuccess('')
-                // window.location.reload(true)
+                window.location.reload(true)
             }, 2000)
         }
 
@@ -65,20 +65,20 @@ export function EditPantalones(){
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
                 <div className="form-group col-4">
-                  <label for="">Color</label>
-                  <input 
-                  type="text"
-                   value={Color} 
-                   onChange={(event)=>setColor(event.target.value)}
-                  name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
-                  <small id="helpId" className="text-muted">&nbsp;</small>
-                </div>
-                <div className="form-group col-4">
                   <label for="">Cantidad</label>
                   <input 
                   type="text"
                    value={Cantidad} 
                    onChange={(event)=>setCantidad(event.target.value)}
+                  name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
+                  <small id="helpId" className="text-muted">&nbsp;</small>
+                </div>
+                <div className="form-group col-4">
+                  <label for="">Color</label>
+                  <input 
+                  type="text"
+                   value={Color} 
+                   onChange={(event)=>setColor(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted ">&nbsp;</small>
                 </div>

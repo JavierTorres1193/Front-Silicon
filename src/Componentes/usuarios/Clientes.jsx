@@ -121,7 +121,7 @@ export function Clientes(){
                 }
                 
         <div className="card-body">
-        <Link name="" id="" className="btn btn-outline-secondary" to={``} role="button">Crear Cliente </Link>
+      
         <div className="table-responsive">
             
                 <table className="table text-white">
