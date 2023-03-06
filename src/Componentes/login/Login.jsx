@@ -40,7 +40,7 @@ export function Login (){
         <div class="login-box">
             <h2>Login</h2>
             <form onSubmit={enviarForm}>
-                <h1 class="h3 mb-3 fw-normal">Ingresar sus datos</h1>
+                <h1 class="h3 mb-3 fw-normal text-muted">Ingresar sus datos</h1>
                     {
                         mensajeError?
                         <div class="alert alert-danger" role="alert">

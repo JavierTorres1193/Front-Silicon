@@ -10,7 +10,7 @@ export function Menu(){
   const logout  = async (event)=>{
           setUsuario('')
           window.localStorage.removeItem('usuario')
-          window.location.reload(true);
+          window.location.href=('/')
   }
 
     return(
@@ -52,7 +52,7 @@ export function Menu(){
         </div>
       </li>
       <li className="nav-item active">
-      <button onClick={logout} className="nav-link text-danger"to={'/'}>Salir</button>
+      <button onClick={logout} className="btn btn-outline-danger"to={'/'}>Cerrar Sesión</button>
       </li>
     </ul>
   </div>
