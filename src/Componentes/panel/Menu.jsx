@@ -1,21 +1,32 @@
 import { Link } from 'react-router-dom'
 import { Principal } from './Principal'
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import * as API from '../../Servicios/Servicios'
 
 
 export function Menu(){
 
   const [usuario, setUsuario] = useState('')
+  const [nombre_usuario, setNombreUsuario] = useState('')
+
   const logout  = async (event)=>{
           setUsuario('')
           window.localStorage.removeItem('usuario')
           window.location.href=('/')
   }
 
+  useEffect(()=>{
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
+    if(usuarioLogueado){
+      setNombreUsuario(usuarioLogueado.datos[0].apellido_nombre)
+    }
+  },[])
+
+
+
     return(
         <nav className="navbar navbar-expand-lg">
-  <a className="navbar-brand text-light" href='/'>Banzai Clothes</a>
+  <a className="navbar-brand text-light" href='/'><b>Banzai Clothes</b></a>
   <button className="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -50,6 +61,9 @@ export function Menu(){
           <Link className="dropdown-item" to={'/listarpantalones'}>Pantalones</Link>
           <Link className="dropdown-item" to={'/listarremeras'}>Remeras</Link>
         </div>
+      </li>
+      <li className="nav-item active text-light" >  
+      <a className='nav-link dropdown text-primary'>Usuario: {nombre_usuario}  </a>
       </li>
       <li className="nav-item active">
       <button onClick={logout} className="btn btn-outline-danger"to={'/'}>Cerrar Sesión</button>
