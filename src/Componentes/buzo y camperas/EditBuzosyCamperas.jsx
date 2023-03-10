@@ -22,6 +22,7 @@ export function EditBuzosyCamperas(){
 
 
     const trae_datos = async ()=>{
+        const datos= await API.getBuzosyCamperasById(idBuzosyCamperas);
         console.log('los datos enviados son',datos[0].Talle)
             setTalle(datos[0].Talle)
             setCantidad(datos[0].Cantidad)
