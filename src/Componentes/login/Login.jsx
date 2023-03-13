@@ -20,7 +20,7 @@ export function Login (){
         console.log(username,password)
         if(user.status){
             console.log("entra en el if")
-            // console.log(user.token);
+            console.log(user.token);
             window.localStorage.setItem('usuario', JSON.stringify(user));
             window.localStorage.setItem('token', JSON.stringify(user.token));
             setSesion(sesion)

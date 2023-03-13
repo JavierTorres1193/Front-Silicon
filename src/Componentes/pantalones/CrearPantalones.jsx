@@ -6,25 +6,52 @@ export function CrearPantalones(){
 
     
     const [mensajeSuccess, setmensajeSuccess] = useState('')
+    const [mensajeError, setmensajeError] = useState('')
     const [Talle, setTalle] = useState('');
     const [Cantidad, setCantidad] = useState('');
     const [Color, setColor] = useState('');
     
     
-    const crear_pantalones = ()=>{
-        const datos_pantalones={
+     
+    const crear_producto = () => {
+        if (Talle && Color) {
+          const datos_producto = {
             Talle: Talle,
-            Cantidad: Cantidad,
-            Color: Color 
-        };
-        console.log(datos_pantalones)
-        API.SavePantalones(datos_pantalones);
-        setmensajeSuccess('Se agrego al producto')
-            setTimeout(()=>{
-                setmensajeSuccess('')
-                // window.location.href('/listarbuzosycamperas')
-            }, 2000)
-    }
+            Color: Color
+            
+          };
+          
+          fetch('/pantalones', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos_producto)
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              alert(data.error);
+            } else {
+              setmensajeSuccess('Se agrego el Producto');
+              setTimeout(() => {
+                setmensajeSuccess('');
+              }, 2000);
+            }
+          })
+          .catch(error => {
+            setmensajeError('Ya existe el Producto');
+            setTimeout(() => {
+              setmensajeError('');
+            }, 2000);
+          });
+        } else {
+            setmensajeError('Complete todos los campos');
+            setTimeout(() => {
+              setmensajeError('');
+            }, 2000);
+        }
+      };
 
     return(
         <div className="card table bg-dark text-white">
@@ -35,6 +62,12 @@ export function CrearPantalones(){
                 mensajeSuccess?
                 <div className="alert alert-success" role="alert">
                     {mensajeSuccess}
+                </div>:''
+            }
+            {
+                mensajeError?
+                <div className="alert alert-danger" role="alert">
+                    {mensajeError}
                 </div>:''
             }
             <div className="card-body">
@@ -70,7 +103,7 @@ export function CrearPantalones(){
                 
                 <div className="row">
                     <div className='col-3 mt-3'>
-                        <button  onClick={crear_pantalones}  type="button" className="btn btn-outline-secondary text-success">Agregar</button>
+                        <button  onClick={crear_producto}  type="button" className="btn btn-outline-secondary text-success">Agregar</button>
                         <small id="helpId" className="text-muted">&nbsp;</small>
 
                         <Link to={'/listarpantalones'}><button type="button" className="btn btn-outline-secondary text-primary">Volver al listado</button></Link>

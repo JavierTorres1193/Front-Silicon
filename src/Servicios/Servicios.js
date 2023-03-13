@@ -35,7 +35,7 @@ export async function getClientes(){
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          ELPEPE: `Bearer ${token}`,
         },
       };
       
@@ -59,7 +59,7 @@ export async function getClienteById(idClientes){
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          ELPEPE: `Bearer ${token}`,
         },
       };
     try{
