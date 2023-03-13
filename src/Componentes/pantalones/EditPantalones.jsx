@@ -14,14 +14,20 @@ export function EditPantalones(){
 
 
 
-
     useEffect(()=>{
         // trae_datos(idClientes)
-        API.getPantalonesById(idPantalones).then(setPantalones)
+       trae_datos(idPantalones)
     },[])
 
 
-   
+    const trae_datos = async ()=>{
+        const datos= await API.getPantalonesById(idPantalones);
+        console.log('los datos enviados son',datos[0].Talle)
+            setTalle(datos[0].Talle)
+            setCantidad(datos[0].Cantidad)
+            setColor(datos[0].Color)
+
+        }
 
 
     const editar_pantalones = ()=>{
@@ -60,14 +66,15 @@ export function EditPantalones(){
                   <input 
                   type="text"
                    value={Talle} 
-                    onChange={(event)=>setTalle(event.target.value)}
+                    // onChange={(event)=>setTalle(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
                 <div className="form-group col-4">
                   <label for="">Cantidad</label>
                   <input 
-                  type="text"
+                  required
+                  type="number" min="0"
                    value={Cantidad} 
                    onChange={(event)=>setCantidad(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
@@ -78,7 +85,7 @@ export function EditPantalones(){
                   <input 
                   type="text"
                    value={Color} 
-                   onChange={(event)=>setColor(event.target.value)}
+                //    onChange={(event)=>setColor(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted ">&nbsp;</small>
                 </div>

@@ -6,25 +6,53 @@ export function CrearProveedor(){
 
     
     const [mensajeSuccess, setmensajeSuccess] = useState('')
+    const [mensajeError, setmensajeError] = useState('')
     const [Nombre, setNombre] = useState('');
     const [Direccion, setDireccion] = useState('');
     const [Telefono, setTelefono] = useState('');
+    const [Producto, setProducto] = useState('');
+
     
-    
-    const crear_proveedor = ()=>{
-        const datos_proveedor={
+    const crear_proveedor = () => {
+        if (Nombre && Direccion && Telefono && Producto) {
+          const datos_proveedor = {
             Nombre: Nombre,
             Direccion: Direccion,
-            Telefono: Telefono 
-        };
-        console.log(datos_proveedor)
-        API.SaveProveedor(datos_proveedor);
-        setmensajeSuccess('Se agrego al proveedor')
-            setTimeout(()=>{
-                setmensajeSuccess('')
-                // window.location.href('/proveedores')
-            }, 2000)
-    }
+            Telefono: Telefono,
+            Producto: Producto
+          };
+          
+          fetch('/proveedores', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos_proveedor)
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              alert(data.error);
+            } else {
+              setmensajeSuccess('Se agregó al proveedor');
+              setTimeout(() => {
+                setmensajeSuccess('');
+              }, 2000);
+            }
+          })
+          .catch(error => {
+            setmensajeError('Ya existe el Proveedor');
+            setTimeout(() => {
+              setmensajeError('');
+            }, 2000);
+          });
+        } else {
+            setmensajeError('Complete todos los campos');
+            setTimeout(() => {
+              setmensajeError('');
+            }, 2000);
+        }
+      };
 
     return(
         <div className="card table bg-dark text-white">
@@ -37,12 +65,19 @@ export function CrearProveedor(){
                     {mensajeSuccess}
                 </div>:''
             }
+            {
+                mensajeError?
+                <div className="alert alert-danger" role="alert">
+                    {mensajeError}
+                </div>:''
+            }
             <div className="card-body">
                 <div className='row'>
 
                 <div className="form-group col-4" >
                   <label for="">Nombre</label>
                   <input 
+                  required
                   type="text"
                    value={Nombre} 
                    onChange={(event)=>setNombre(event.target.value)}
@@ -52,6 +87,7 @@ export function CrearProveedor(){
                 <div className="form-group col-4">
                   <label for="">Direccion</label>
                   <input 
+                  required
                   type="text"
                    value={Direccion} 
                    onChange={(event)=>setDireccion(event.target.value)}
@@ -61,13 +97,23 @@ export function CrearProveedor(){
                 <div className="form-group col-4">
                   <label for="">Telefono</label>
                   <input 
+                  required
                   type="text"
                    value={Telefono} 
                    onChange={(event)=>setTelefono(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
-                
+                <div className="form-group col-4">
+                  <label for="">Producto</label>
+                  <input 
+                  required
+                  type="text"
+                   value={Producto} 
+                   onChange={(event)=>setProducto(event.target.value)}
+                  name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
+                  <small id="helpId" className="text-muted">&nbsp;</small>
+                </div>
                 <div className="row">
                     <div className='col-3 mt-3'>
                         <button  onClick={crear_proveedor}  type="button" className="btn btn-outline-secondary text-success">Agregar</button>

@@ -8,6 +8,8 @@ export function Registro(){
     const [email, setEmail] = useState('');
     const [apellido_nombre, setApellidonombre] = useState('');
     const [mensajeSuccess, setmensajeSuccess] = useState('');
+    const [mensajeError, setmensajeError] = useState('');
+
 
 
 
@@ -19,7 +21,14 @@ export function Registro(){
             setTimeout(()=>{
                 setmensajeSuccess('');
             }, 4000)
-            window.location.reload(true)
+            window.location.href=('/')
+            window.alert("El usuario se creo correctamente")
+        } else{
+            setmensajeError(user.mensaje)
+            setTimeout(()=>{
+                setmensajeError('');
+            }, 3000)
+            window.alert(user.mensaje)
         }
     }
     return(
@@ -31,28 +40,29 @@ export function Registro(){
                 {mensajeSuccess}
             </div>:''
         }
+       
         <div class="login-box">
     <h2>Crear Usuario</h2>
     <form onSubmit={registroForm}>
     <div class="user-box">
     <input 
+    required
     type="text" 
     name="" 
-    required=""
     placeholder="Nombre del Usuario" 
     value={username} 
     onChange={(event)=>setUsername(event.target.value)}
     />
     <small id="helpId" className="text-muted">&nbsp;</small>
-    <label>Nombre de Usuario</label>
+    <label>Nombre del Usuario</label>
     </div>
 
 
     <div class="user-box">
     <input 
+        required
     type="password" 
     name="" 
-    required=""
     value={password}
     placeholder="Contraseña" 
     onChange={(event)=>setPassword(event.target.value)}
@@ -63,10 +73,10 @@ export function Registro(){
 
     <div class="user-box">
     <input 
+    required
     type="email" 
     name="" 
-    required=""
-    placeholder="Correo Electronico" 
+    placeholder="Email" 
     value={email}
     onChange={(event)=>setEmail(event.target.value)}
     />
@@ -76,15 +86,15 @@ export function Registro(){
 
     <div class="user-box">
     <input 
+    required
     type="text" 
     name="" 
-    required=""
-    placeholder="Apellido y Nombre del Usuario" 
+    placeholder="Apellido y Nombre" 
     value={apellido_nombre}
     onChange={(event)=>setApellidonombre(event.target.value)}
     />
     <small id="helpId" className="text-muted">&nbsp;</small>
-    <label>Apellido y nombre</label>
+    <label>Apellido y Nombre</label>
     </div>
 
     

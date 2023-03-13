@@ -99,17 +99,18 @@ export function     ListaRemeras(){
                             <td>{remeras.Talle}</td>
                             <td>{remeras.Cantidad}</td>
                             <td>{remeras.Color}</td>
-                            <td>{remeras.Estado}</td>
+                            <td>{remeras.Estado=='A'?'Activo':'Baja'}</td>
                             <td>
 
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            { (remeras.Estado=='A')? 
-                                <button onClick={() => bajaRemeras(remeras.idRemeras,'B')} type="button" className="btn btn-outline-danger">Baja</button>
-                                :
+                            { (remeras.Estado=='B')? 
                                 <button onClick={() => altaRemeras(remeras.idRemeras,'B')}type="button" className="btn btn-outline-primary">Alta</button>
-                        }
+                                :
+                                <>
+                                <button onClick={() => bajaRemeras(remeras.idRemeras,'B')} type="button" className="btn btn-outline-danger">Baja</button>
                                 <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_remeras/${remeras.idRemeras}`} role="button">Editar </Link>
-
+                                </>
+                            }
                                 </div>
                         
                             </td>

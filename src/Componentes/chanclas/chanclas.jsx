@@ -101,16 +101,18 @@ export function     ListaChanclas(){
                             <td>{chanclas.Talle}</td>
                             <td>{chanclas.Cantidad}</td>
                             <td>{chanclas.Color}</td>
-                            <td>{chanclas.Estado}</td>
+                            <td>{chanclas.Estado == 'A'?'Activo':'Baja'}</td>
                             <td>
 
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            { (chanclas.Estado=='A')? 
-                                <button onClick={() => bajaChanclas(chanclas.idChanclas,'B')} type="button" className="btn btn-outline-danger">Baja</button>
-                                :
+                            { (chanclas.Estado=='B')? 
                                 <button onClick={() => altaChanclas(chanclas.idChanclas,'B')}type="button" className="btn btn-outline-primary">Alta</button>
-                        }
+                                :
+                                <>
+                                <button onClick={() => bajaChanclas(chanclas.idChanclas,'B')} type="button" className="btn btn-outline-danger">Baja</button>
                                 <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_chanclas/${chanclas.idChanclas}`} role="button">Editar </Link>
+                                </>
+                        }
 
                                 </div>
                         

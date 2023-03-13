@@ -17,12 +17,18 @@ export function EditMallas(){
 
     useEffect(()=>{
         // trae_datos(idClientes)
-        API.getMallasById(idMallas).then(setMallas)
+       trae_datos(idMallas)
     },[])
 
 
-   
+    const trae_datos = async ()=>{
+        const datos= await API.getMallasById(idMallas);
+        console.log('los datos enviados son',datos[0].Talle)
+            setTalle(datos[0].Talle)
+            setCantidad(datos[0].Cantidad)
+            setColor(datos[0].Color)
 
+        }
 
     const editar_mallas = ()=>{
         const datos_enviar={
@@ -42,6 +48,7 @@ export function EditMallas(){
 
 
     return(
+       
         <div className="card table bg-dark text-white">
             <div className="card-header">
                 Edicion de los datos del producto
@@ -60,14 +67,15 @@ export function EditMallas(){
                   <input 
                   type="text"
                    value={Talle} 
-                    onChange={(event)=>setTalle(event.target.value)}
+                    // onChange={(event)=>setTalle(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
                 <div className="form-group col-4">
                   <label for="">Cantidad</label>
                   <input 
-                  type="text"
+                  required
+                  type="number" min="0"
                    value={Cantidad} 
                    onChange={(event)=>setCantidad(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
@@ -78,7 +86,7 @@ export function EditMallas(){
                   <input 
                   type="text"
                    value={Color} 
-                   onChange={(event)=>setColor(event.target.value)}
+                //    onChange={(event)=>setColor(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted ">&nbsp;</small>
                 </div>
@@ -100,5 +108,6 @@ export function EditMallas(){
             </div>
             
         </div>
+       
     )
         }

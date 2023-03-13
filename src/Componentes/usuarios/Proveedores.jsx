@@ -90,6 +90,7 @@ export function    Proveedores(){
                             <th scope="col">Nombre</th>
                             <th scope="col">Dirección</th>
                             <th scope="col">Telefono</th>
+                            <th scope="col">Producto</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acciones</th>
                             
@@ -102,17 +103,21 @@ export function    Proveedores(){
                             <td>{provedor.Nombre}</td>
                             <td>{provedor.Direccion}</td>
                             <td>{provedor.Telefono}</td>
-                            <td>{provedor.Estado}</td>
+                            <td>{provedor.Producto}</td>
+
+                            <td>{provedor.Estado == 'A'?'Activo':'Baja'}</td>
                             <td>
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            { (provedor.Estado=='A')? 
-                                <button onClick={() =>bajaProovedor(provedor.idProveedores,'B')}type="button" className="btn btn-outline-danger">Baja</button>
-                            
-                                :
+                            { (provedor.Estado=='B')? 
                                 <button onClick={() => altaProovedor(provedor.idProveedores,'A')} type="button" className="btn btn-outline-primary">Alta</button>
                                 
-                            }
+                                :
+                                <>
+                                
+                                <button onClick={() =>bajaProovedor(provedor.idProveedores,'B')}type="button" className="btn btn-outline-danger">Baja</button>
                             <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_proveedores/${provedor.idProveedores}`} role="button">Editar </Link>
+                            </>
+                            }
                                 
                                 </div>
 

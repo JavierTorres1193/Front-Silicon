@@ -8,26 +8,34 @@ const API_URL = 'http://localhost:3300'
 //////////////////////////////////////////////////////
 
 
-export async function clientes(){
-    try{
-    const response = await fetch(`${API_URL}/clientes`);
-    const data = await response.json();
-    return data;
-}   catch (error){
-    console.log('Nuestro error es',error);
-}
-}
+// export async function clientes(){
+//     const token = JSON.parse(localStorage.getItem('token'));
+    
+//     const requestOptions = {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${token}`,
+//         },
+//       };
+//     try{
+//     const response = await fetch(`${API_URL}/clientes`,requestOptions);
+//     const data = await response.json();
+//     return data;
+// }   catch (error){
+//     console.log('Nuestro error es',error);
+// }
+// }
 
 
 
 //Funcion que trae datos
 export async function getClientes(){
-    // const token = JSON.parse(localStorage.getItem('token'));
-    
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log(token)
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       
@@ -45,8 +53,17 @@ export async function getClientes(){
 
 
 export async function getClienteById(idClientes){
+
+    const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
     try{
-        const response = await fetch(`${API_URL}/clientes/${idClientes}`);
+        const response = await fetch(`${API_URL}/clientes/${idClientes}`,requestOptions);
         const data = await response.json();
         console.log(data)
         return data;
@@ -60,12 +77,16 @@ export async function getClienteById(idClientes){
 
 // Baja y alta
 
+// Baja y alta
+
 export async function BajaCliente(idClientes){
+    
+    // const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-
+            // Authorization: `Bearer ${token}`,
         }
     };
     try{
@@ -80,10 +101,12 @@ export async function BajaCliente(idClientes){
 }
 
 export async function AltaCliente(idClientes){
+    // const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            //  Authorization: `Bearer ${token}`,
         }
     };
     try{
@@ -95,15 +118,35 @@ export async function AltaCliente(idClientes){
 
         alert('No se puede conectar con el servidor')
     }
+}   
+
+
+
+export function SaveCliente(datos){
+    // const token = JSON.parse(localStorage.getItem('token'));
+    const requestOptions={
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`
+
+        },
+        body: JSON.stringify(datos)
+    };
+    fetch(`${API_URL}/clientes`, requestOptions)
+    
 }
 
 //EDITAR
 
-export function UpdateCliente(idClientes, datos){
+export function UpdateCliente(idClientes, datos){ 
+    // const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`
+
         },
         body: JSON.stringify(datos)
     };
@@ -112,17 +155,6 @@ export function UpdateCliente(idClientes, datos){
 }
 
 
-// export function SaveCliente(datos){
-//     const requestOptions={
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(datos)
-//     };
-//     fetch(`${API_URL}/clientes`, requestOptions)
-    
-// }
 
 
 ////////////////////////////////////////////////////////
@@ -133,8 +165,16 @@ export function UpdateCliente(idClientes, datos){
 
 
 export async function proveedores(){
+    const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
     try{
-        const response = await fetch(`${API_URL}/Proveedores`);
+        const response = await fetch(`${API_URL}/Proveedores`,requestOptions);
         const data = await response.json();
         return data;
 }   catch (error){
@@ -146,12 +186,11 @@ export async function proveedores(){
 
 //Funcion que trae datos
 export async function getProovedores(){
-    // const token = JSON.parse(localStorage.getItem('token'));
-    
+    const token = JSON.parse(localStorage.getItem('token'));   
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       
@@ -164,10 +203,17 @@ export async function getProovedores(){
     }
 }
 
-
 export async function getProveedorById(idProveedores){
+    const token = JSON.parse(localStorage.getItem('token'));
+    
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
     try{
-        const response = await fetch(`${API_URL}/proveedores/${idProveedores}`);
+        const response = await fetch(`${API_URL}/proveedores/${idProveedores}`,requestOptions);
         const data = await response.json();
         console.log(data)
         return data;
@@ -179,14 +225,15 @@ export async function getProveedorById(idProveedores){
 
 
 
-
 // Baja y alta
 
 export async function BajaProveedores(idProveedores){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
 
         }
     };
@@ -202,10 +249,13 @@ export async function BajaProveedores(idProveedores){
 }
 
 export async function AltaProveedores(idProveedores){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+
         }
     };
     try{
@@ -220,10 +270,13 @@ export async function AltaProveedores(idProveedores){
 }
 
 export function UpdateProovedor(idProveedores, datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -234,10 +287,13 @@ export function UpdateProovedor(idProveedores, datos){
 
 
 export function SaveProveedor(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -255,24 +311,31 @@ export function SaveProveedor(datos){
 
 
 
-export async function buzosycamperas(){
-    try{
-        const response = await fetch(`${API_URL}/buzosycamperas`);
-        const data = await response.json();
-        return data;
-}   catch (error){
-    console.log('Nuestro error es',error);
-}
-}
+// export async function buzosycamperas(){
+//     const token = JSON.parse(localStorage.getItem('token'));
+//     const requestOptions = {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${token}`,
+//         },
+//       };
+//     try{
+//         const response = await fetch(`${API_URL}/buzosycamperas`,requestOptions);
+//         const data = await response.json();
+//         return data;
+// }   catch (error){
+//     console.log('Nuestro error es',error);
+// }
+// }
 
 //Funcion que trae datos
 export async function getBuzosyCamperas(){
-    // const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       
@@ -302,11 +365,13 @@ export async function getBuzosyCamperasById(idBuzosyCamperas){
 // Baja y alta
 
 export async function BajaBuzosyCamperas(idBuzosyCamperas){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-
+          Authorization: `Bearer ${token}`,
+            
         }
     };
     try{
@@ -321,10 +386,13 @@ export async function BajaBuzosyCamperas(idBuzosyCamperas){
 }
 
 export async function AltaBuzosyCamperas(idBuzosyCamperas){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+
         }
     };
     try{
@@ -340,10 +408,12 @@ export async function AltaBuzosyCamperas(idBuzosyCamperas){
 
 
 export function UpdateBuzosyCamperas(idBuzosyCamperas, datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(datos)
     };
@@ -352,10 +422,13 @@ export function UpdateBuzosyCamperas(idBuzosyCamperas, datos){
 }
 
 export function SaveBuzosyCamperas(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -410,10 +483,13 @@ export async function getChanclasById(idChanclas){
 }
 
 export function UpdateChanclas(idChanclas, datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -426,10 +502,13 @@ export function UpdateChanclas(idChanclas, datos){
 // Baja y alta
 
 export async function BajaChanclas(idChanclas){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
 
         }
     };
@@ -445,10 +524,13 @@ export async function BajaChanclas(idChanclas){
 }
 
 export async function AltaChanclas(idChanclas){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         }
     };
     try{
@@ -465,10 +547,13 @@ export async function AltaChanclas(idChanclas){
 
 
 export function SaveChanclas(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -523,10 +608,13 @@ export async function getMallasById(idMallas){
 }
 
 export function UpdateMallas(idMallas, datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -538,10 +626,13 @@ export function UpdateMallas(idMallas, datos){
 // Baja y alta
 
 export async function BajaMallas(idMallas){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
 
         }
     };
@@ -557,10 +648,13 @@ export async function BajaMallas(idMallas){
 }
 
 export async function AltaMallas(idMallas){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         }
     };
     try{
@@ -577,10 +671,12 @@ export async function AltaMallas(idMallas){
 
 
 export function SaveMallas(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(datos)
     };
@@ -635,10 +731,13 @@ export async function getPantalonesById(idPantalones){
 }
 
 export function UpdatePantalones(idPantalones, datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -651,10 +750,12 @@ export function UpdatePantalones(idPantalones, datos){
 // Baja y alta
 
 export async function BajaPantalones(idPantalones){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
 
         }
     };
@@ -670,10 +771,13 @@ export async function BajaPantalones(idPantalones){
 }
 
 export async function AltaPantalones(idPantalones){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         }
     };
     try{
@@ -689,10 +793,12 @@ export async function AltaPantalones(idPantalones){
 
 
 export function SavePantalones(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(datos)
     };
@@ -736,10 +842,13 @@ export async function getRemeras(){
 // Baja y alta
 
 export async function BajaRemeras(idRemeras){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
 
         }
     };
@@ -755,10 +864,13 @@ export async function BajaRemeras(idRemeras){
 }
 
 export async function AltaRemeras(idRemeras){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         }
     };
     try{
@@ -785,10 +897,13 @@ export async function getRemerasById(idRemeras){
 }
 
 export function UpdateRemeras(idRemeras, datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };
@@ -798,10 +913,12 @@ export function UpdateRemeras(idRemeras, datos){
 
 
 export function SaveRemeras(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(datos)
     };
@@ -815,10 +932,13 @@ export function SaveRemeras(datos){
 
 
 export async function Login (datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify(datos)
     };

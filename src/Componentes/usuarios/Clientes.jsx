@@ -19,37 +19,7 @@ export function Clientes(){
         API.getClientes().then(setClientes)
     },[])
     
-    // const trae_datos_a_editar  = async(idClientes)=>{
-    //     setIDClienteditar(idClientes)
-    //     const datos_cliente = await API.getClientes(idClientes)
-    //     console.log(datos_cliente)
-    //     setCurso(datos_cliente.Nombre)
-    //     setCurso(datos_cliente.Direccion)
-    //     setCurso(datos_cliente.Telefono)
-
-        
-    // }
-
-//  const columns = [
-//         {
-//           name: 'IdClientes',
-//           selector: row => row.idClientes
-//         },
-//         {
-//           name: 'Nombre',
-//           selector: row => row.Nombre,
-//         },
-//         {
-//           name: 'Direccion',
-//           selector: row => row.Direccion,
-//         },
-//         {
-//           name: 'Telefono',
-//           selector: row => row.Telefono
-//         }
-
-        
-//     ]
+   
 
 
 
@@ -92,10 +62,6 @@ export function Clientes(){
     }
 
 
-//////////////////////Edit//////////////////////////////
-
-   
-////////////////////////////////////////////////////
 
 
     return(
@@ -126,11 +92,13 @@ export function Clientes(){
             
                 <table className="table text-white">
                     <thead>
+                    <Link to = {'/crear_cliente'}role="button" className="btn btn-outline-primary">Agregar Cliente</Link>
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Dirección</th>
                             <th scope="col">Telefono</th>
+                            <th scope="col">Producto</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acciones</th>
                         </tr>
@@ -142,18 +110,22 @@ export function Clientes(){
                             <td>{clientes.Nombre}</td>
                             <td>{clientes.Direccion}</td>
                             <td>{clientes.Telefono}</td>
+                            <td>{clientes.Producto}</td>
+
                             <td>{clientes.Estado=='A'?'Activo':'Baja'}</td>
                             <td>
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            { (clientes.Estado=='A')? 
+                            { (clientes.Estado=='B')? 
 
-                                <button onClick={() => bajaCliente(clientes.idClientes,'B')} type="button" className="btn btn-outline-danger">Baja</button>
-                                :
                                 <button onClick={() =>altaCliente(clientes.idClientes,'A')} type="button" className="btn btn-outline-primary">Alta</button>
+                                :
+                                <>
 
-                                }
+                               
+                                <button onClick={() => bajaCliente(clientes.idClientes,'B')} type="button" className="btn btn-outline-danger">Baja</button>
                                 <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_clientes/${clientes.idClientes}`} role="button">Editar </Link>
-                                {/* <DataTable columns={columns} data={cliente} /> */}
+                                </>
+                            }
 
                                 </div>
                             </td>

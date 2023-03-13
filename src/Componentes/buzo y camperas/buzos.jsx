@@ -99,17 +99,18 @@ export function     ListaBuzos(){
                             <td>{buzosycamperas.Talle}</td>
                             <td>{buzosycamperas.Cantidad}</td>
                             <td>{buzosycamperas.Color}</td>
-                            <td>{buzosycamperas.Estado}</td>
+                            <td>{buzosycamperas.Estado == 'A'? 'Activo':'Baja'}</td>
                             <td>
 
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            { (buzosycamperas.Estado=='A')? 
-                                <button onClick={() => bajaBuzosyCamperas(buzosycamperas.idBuzosyCamperas,'B')} type="button" className="btn btn-outline-danger">Baja</button>
-                                :
+                            { (buzosycamperas.Estado=='B')? 
                                 <button onClick={() => altaBuzosyCamperas(buzosycamperas.idBuzosyCamperas,'B')}type="button" className="btn btn-outline-primary">Alta</button>
-                        }
+                                :
+                                <>
+                                <button onClick={() => bajaBuzosyCamperas(buzosycamperas.idBuzosyCamperas,'B')} type="button" className="btn btn-outline-danger">Baja</button>
                                 <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_buzosycamperas/${buzosycamperas.idBuzosyCamperas}`} role="button">Editar </Link>
-
+                                </>
+                        }
                                 </div>
                         
                             </td>

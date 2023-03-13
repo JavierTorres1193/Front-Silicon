@@ -66,6 +66,7 @@ export function EditBuzosyCamperas(){
                 <div className="form-group col-4" >
                   <label for="">Talle</label>
                   <input 
+                  readOnly
                   type="text"
                    value={Talle} 
                     // onChange={(event)=>setTalle(event.target.value)}
@@ -75,6 +76,7 @@ export function EditBuzosyCamperas(){
                 <div className="form-group col-4">
                   <label for="">Cantidad</label>
                   <input 
+                  required
                   type="number" min="0"
                    value={Cantidad} 
                    onChange={(event)=>setCantidad(event.target.value)}
@@ -84,6 +86,7 @@ export function EditBuzosyCamperas(){
                 <div className="form-group col-4">
                   <label for="">Color</label>
                   <input 
+                  readOnly
                   type="text"
                    value={Color} 
                 //    onChange={(event)=>setColor(event.target.value)}

@@ -99,17 +99,18 @@ export function     ListaPantalones(){
                             <td>{pantalones.Talle}</td>
                             <td>{pantalones.Cantidad}</td>
                             <td>{pantalones.Color}</td>
-                            <td>{pantalones.Estado}</td>
+                            <td>{pantalones.Estado=='A'?'Activo':'Baja'}</td>
                             <td>
 
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            { (pantalones.Estado=='A')? 
-                                <button onClick={() => bajaPantalones(pantalones.idPantalones,'B')} type="button" className="btn btn-outline-danger">Baja</button>
-                                :
+                            { (pantalones.Estado=='B')? 
                                 <button onClick={() => altaPantalones(pantalones.idPantalones,'B')}type="button" className="btn btn-outline-primary">Alta</button>
-                        }
+                                :
+                                <>
+                                <button onClick={() => bajaPantalones(pantalones.idPantalones,'B')} type="button" className="btn btn-outline-danger">Baja</button>
                                 <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_pantalones/${pantalones.idPantalones}`} role="button">Editar </Link>
-
+                                </>
+                        }
                                 </div>
                         
                             </td>

@@ -25,6 +25,9 @@ import { CrearChanclas } from './Componentes/chanclas/CrearChanclas'
 import { CrearMallas } from './Componentes/mallas/CrearMallas'
 import { CrearPantalones } from './Componentes/pantalones/CrearPantalones'
 import { CrearRemeras } from './Componentes/remeras/CrearRemeras'
+import { EditChanclas } from './Componentes/chanclas/EditChanclas'
+import { CrearCliente } from './Componentes/usuarios/CrearCliente'
+
 
 function App() {
 
@@ -48,6 +51,41 @@ function App() {
       <Routes>
       <Route path='/' element={<Login/>}></Route>
       <Route path='/registro' element={<Registro/>}></Route>
+      <Route path='/' element={<Login/>}></Route> 
+
+         
+
+          <Route path='/clientes' element={<Login/>}></Route>
+          <Route path='/crear_cliente' element = {<Login/>}></Route>
+          <Route path='/edit_clientes/:idClientes' element={<Login/>} ></Route>
+
+          <Route path='/proveedores' element={<Login/>}></Route>
+          <Route path='/crear_proveedor' element = {< Login/>}></Route>
+          <Route path='/edit_proveedores/:idProveedores' element={<Login/>} ></Route>
+            
+
+          <Route path='/listarremeras' element={<Login/>}></Route>
+          <Route path='/edit_remeras/:idRemeras' element={<Login/>}></Route>
+          <Route path='/crear_remeras' element={<Login/>}></Route>
+
+
+          <Route path='/listarpantalones' element={<Login/>}></Route>
+          <Route path='/edit_pantalones/:idPantalones' element={<Login/>}></Route>
+          <Route path='/crear_pantalones' element={<Login/>}></Route>
+
+
+          <Route path='/listarchanclas' element={<Login/>}></Route>
+          <Route path='/edit_chanclas/:idChanclas' element={<Login/>}></Route>
+          <Route path='/crear_chanclas' element={<Login/>}></Route>
+
+
+          <Route path='/listarbuzosycamperas' element={<Login/>}></Route>
+          <Route path='/edit_buzosycamperas/:idBuzosyCamperas' element={<Login/>}></Route>
+          <Route path='/crear_buzosycamperas' element={<Login/>}></Route>
+
+          <Route path='/listarmallas' element={<Login/>}></Route>
+          <Route path='/crear_mallas' element={<Login/>}></Route>
+          <Route path='/edit_mallas/:idMallas' element={<Login/>}></Route> 
       </Routes>
       
       :
@@ -61,6 +99,7 @@ function App() {
           <Route path='/registro' element={<Registro/>}></Route>
 
           <Route path='/clientes' element={<Clientes/>}></Route>
+          <Route path='/crear_cliente' element = {< CrearCliente/>}></Route>
           <Route path='/edit_clientes/:idClientes' element={<EditCliente/>} ></Route>
 
           <Route path='/proveedores' element={<Proveedores/>}></Route>
@@ -79,7 +118,7 @@ function App() {
 
 
           <Route path='/listarchanclas' element={<ListaChanclas/>}></Route>
-          <Route path='/edit_chanclas/:idChanclas' element={<EditBuzosyCamperas/>}></Route>
+          <Route path='/edit_chanclas/:idChanclas' element={<EditChanclas/>}></Route>
           <Route path='/crear_chanclas' element={<CrearChanclas/>}></Route>
 
 

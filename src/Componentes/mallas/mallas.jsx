@@ -101,16 +101,19 @@ export function     ListaMallas(){
                             <td>{mallas.Talle}</td>
                             <td>{mallas.Cantidad}</td>
                             <td>{mallas.Color}</td>
-                            <td>{mallas.Estado}</td>
+                            <td>{mallas.Estado == 'A'?'Activo':'Baja'}</td>
                             <td>
 
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            { (mallas.Estado=='A')? 
-                                <button onClick={() => bajaMallas(mallas.idMallas,'B')} type="button" className="btn btn-outline-danger">Baja</button>
-                                :
+                            { (mallas.Estado=='B')? 
                                 <button onClick={() => altaMallas(mallas.idMallas,'B')}type="button" className="btn btn-outline-primary">Alta</button>
-                        }
+                                :
+                                <>
+                        
+                                <button onClick={() => bajaMallas(mallas.idMallas,'B')} type="button" className="btn btn-outline-danger">Baja</button>
                                 <Link name="" id="" className="btn btn-outline-secondary" to={`/edit_mallas/${mallas.idMallas}`} role="button">Editar </Link>
+                                </>
+                        }
 
                                 </div>
                         

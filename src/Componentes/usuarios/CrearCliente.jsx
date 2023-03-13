@@ -1,71 +1,63 @@
-import React, { useEffect,useState } from 'react'
-import { Link, useParams} from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import * as API from '../../servicios/servicios'
 
-export function EditProveedores(){
+export function CrearCliente(){
 
-    const [setProveedores] = useState('')
+    
     const [mensajeSuccess, setmensajeSuccess] = useState('')
-    const [mensajeError, setMensajeError] = useState('')
-
+    const [mensajeError, setmensajeError] = useState('')
     const [Nombre, setNombre] = useState('');
     const [Direccion, setDireccion] = useState('');
     const [Telefono, setTelefono] = useState('');
-    const {idProveedores} = useParams();
+    const [Producto, setProducto] = useState('');
 
-
-
-
-
-   
-    useEffect(()=>{
-        // trae_datos(idClientes)
-       trae_datos(idProveedores)
-    },[])
-
-
-    const trae_datos = async () => {
-        console.log('aki toy')
-        const datos = await API.getProveedorById(idProveedores);
-        if (datos && datos[0]) {
-            setNombre(datos[0].Nombre);
-            setDireccion(datos[0].Direccion);
-            setTelefono(datos[0].Telefono);
-        }
-    };
-
-
-
-    const editar_proveedor = () => {
-        if (Nombre && Direccion && Telefono) {
-          const datos_proveedor = {
+    
+    
+    const crear_cliente = () => {
+        if (Nombre && Direccion && Telefono && Producto) {
+          const datos_cliente = {
             Nombre: Nombre,
             Direccion: Direccion,
-            Telefono: Telefono
-           
+            Telefono: Telefono,
+            Producto: Producto
           };
           
-          API.UpdateProovedor(idProveedores,datos_proveedor)
-             if(datos_proveedor) {
-                setmensajeSuccess('Se editó al Proveedor');
+          fetch('/proveedores', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos_cliente)
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              alert(data.error);
+            } else {
+              setmensajeSuccess('Se agregó al Cliente');
               setTimeout(() => {
                 setmensajeSuccess('');
               }, 2000);
             }
-    
-        
-        } else {
-            setMensajeError('Complete todos los campos');
+          })
+          .catch(error => {
+            setmensajeError('Ya existe el Cliente');
             setTimeout(() => {
-              setMensajeError('');
+              setmensajeError('');
+            }, 2000);
+          });
+        } else {
+            setmensajeError('Complete todos los campos');
+            setTimeout(() => {
+              setmensajeError('');
             }, 2000);
         }
       };
-
     return(
         <div className="card table bg-dark text-white">
             <div className="card-header">
-                Edicion de los datos del proovedor
+                Agregar Cliente Nuevo
             </div>
             {
                 mensajeSuccess?
@@ -79,7 +71,7 @@ export function EditProveedores(){
                     {mensajeError}
                 </div>:''
             }
-            <div className="card-body ">
+            <div className="card-body">
                 <div className='row'>
 
                 <div className="form-group col-4" >
@@ -87,7 +79,7 @@ export function EditProveedores(){
                   <input 
                   type="text"
                    value={Nombre} 
-                    onChange={(event)=>setNombre(event.target.value)}
+                   onChange={(event)=>setNombre(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
@@ -103,29 +95,33 @@ export function EditProveedores(){
                 <div className="form-group col-4">
                   <label for="">Telefono</label>
                   <input 
-                  type="number" min="0"
+                  type="text"
                    value={Telefono} 
                    onChange={(event)=>setTelefono(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
-                  <small id="helpId" className="text-muted ">&nbsp;</small>
+                  <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
-        
+                <div className="form-group col-4">
+                  <label for="">Producto</label>
+                  <input 
+                  type="text"
+                   value={Producto} 
+                   onChange={(event)=>setProducto(event.target.value)}
+                  name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
+                  <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
-                <td>
-                <div className="btn-group" role="group" aria-label="Basic example">
-                            
-                <button onClick={editar_proveedor} type="button" className="btn btn-outline-secondary text-success">Guardar</button>
-                <small id="helpId" className="text-muted">&nbsp;</small>
-
-                <Link to={'/proveedores'}>
-                <button type="button" className="btn btn-outline-secondary text-primary">Volver a la lista</button>
-                </Link>
                 
-                                
+                <div className="row">
+                    <div className='col-3 mt-3'>
+                        <button  onClick={crear_cliente}  type="button" className="btn btn-outline-secondary text-success">Agregar</button>
+                        <small id="helpId" className="text-muted">&nbsp;</small>
+
+                        <Link to={'/clientes'}><button type="button" className="btn btn-outline-secondary text-primary">Volver al listado</button></Link>
+                    </div>
                 </div>
-                </td>
             </div>
             
         </div>
+        </div>
     )
-        }
+}

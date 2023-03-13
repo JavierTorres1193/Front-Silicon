@@ -6,6 +6,8 @@ export function EditCliente(){
 
     const [setClientes] = useState('')
     const [mensajeSuccess, setmensajeSuccess] = useState('')
+    const [mensajeError, setMensajeError] = useState('')
+
     const [Nombre, setNombre] = useState('');
     const [Direccion, setDireccion] = useState('');
     const [Telefono, setTelefono] = useState('');
@@ -17,29 +19,48 @@ export function EditCliente(){
 
     useEffect(()=>{
         // trae_datos(idClientes)
-        API.getClienteById(idClientes).then(setClientes)
+       trae_datos(idClientes)
     },[])
 
 
-   
-
-
-    const editar_cliente = ()=>{
-        const datos_enviar={
-            Nombre: Nombre,
-            Direccion: Direccion,
-            Telefono: Telefono
-        };
-        API.UpdateCliente(idClientes,datos_enviar);
-        // nombre_curso.current.value=null;
-        
-        setmensajeSuccess('Se Edito el cliente')
-            setTimeout(()=>{
-                setmensajeSuccess('')
-                window.location.reload(true)
-            }, 2000)
+    const trae_datos = async ()=>{
+        const datos= await API.getClienteById(idClientes);
+        console.log('los datos enviados son',datos[0].Nombre)
+        if (datos && datos[0]) {
+            setNombre(datos[0].Nombre)
+            setDireccion(datos[0].Direccion)
+            setTelefono(datos[0].Telefono)
         }
 
+        }
+
+
+
+        const editar_cliente = () => {
+            if (Nombre && Direccion && Telefono) {
+              const datos_cliente = {
+                Nombre: Nombre,
+                Direccion: Direccion,
+                Telefono: Telefono,
+              };
+              
+              API.UpdateCliente(idClientes,datos_cliente)
+                 if(datos_cliente) {
+                    setmensajeSuccess('Se editó al Cliente');
+                  setTimeout(() => {
+                    setmensajeSuccess('');
+                  }, 2000);
+                }
+        
+            
+            } else {
+                setMensajeError('Error en la edición');
+                setTimeout(() => {
+                  setMensajeError('');
+                }, 2000);
+            }
+            
+          };
 
     return(
         <div className="card table bg-dark text-white">
@@ -52,12 +73,19 @@ export function EditCliente(){
                     {mensajeSuccess}
                 </div>:''
             }
+             {
+                mensajeError?
+                <div className="alert alert-danger" role="alert">
+                    {mensajeError}
+                </div>:''
+            }
             <div className="card-body ">
                 <div className='row'>
 
                 <div className="form-group col-4" >
                   <label for="">Nombre</label>
                   <input 
+                  required
                   type="text"
                    value={Nombre} 
                     onChange={(event)=>setNombre(event.target.value)}
@@ -67,6 +95,7 @@ export function EditCliente(){
                 <div className="form-group col-4">
                   <label for="">Direccion</label>
                   <input 
+                  required
                   type="text"
                    value={Direccion} 
                    onChange={(event)=>setDireccion(event.target.value)}
@@ -76,7 +105,8 @@ export function EditCliente(){
                 <div className="form-group col-4">
                   <label for="">Telefono</label>
                   <input 
-                  type="text"
+                  required
+                  type="number" min="0"
                    value={Telefono} 
                    onChange={(event)=>setTelefono(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
@@ -84,6 +114,7 @@ export function EditCliente(){
                 </div>
         
                 </div>
+               
                 <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
                             

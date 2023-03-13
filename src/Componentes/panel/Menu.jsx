@@ -63,7 +63,7 @@ export function Menu(){
         </div>
       </li>
       <li className="nav-item active text-light" >  
-      <a className='nav-link dropdown text-primary'>Usuario: {nombre_usuario}  </a>
+      <a className='nav-link dropdown text-primary'>Usuario: <b>{nombre_usuario}</b>  </a>
       </li>
       <li className="nav-item active">
       <button onClick={logout} className="btn btn-outline-danger"to={'/'}>Cerrar Sesión</button>
