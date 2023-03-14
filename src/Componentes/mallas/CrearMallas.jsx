@@ -13,34 +13,45 @@ export function CrearMallas(){
     
     
     const crear_producto = async () => {
-      if (Talle && Color && Cantidad) {
-        const mallas = await API.getMallas();
-        const productoExistente = mallas.find(
-          (producto) =>
-            producto.Talle.toLowerCase() === Talle.toLowerCase() && producto.Color.toLowerCase() === Color.toLowerCase()
-        );
-        if (productoExistente) {
-          setmensajeError('Ya existe un producto con el mismo talle y color');
-          return;
-        }
-    
-        const datos_producto = {
-          Talle: Talle,
-          Color: Color,
-          Cantidad: Cantidad
-        };
-    
-        API.SaveMallas(datos_producto);
-        Talle.current.value=null;
-        Color.current.value=null;
+      if (!Talle || !Color || !Cantidad) {
+        setmensajeError('Por favor complete todos los campos');
+        setTimeout(() => {
+          setmensajeError('');
+          window.location.reload(true);
+        }, 2000);
+        return;
+      }
+      const mallas = await API.getMallas();
+      const productoExistente = mallas.find(
+        (producto) =>
+          producto.Talle.toLowerCase() === Talle.toLowerCase() && producto.Color.toLowerCase() === Color.toLowerCase()
+      );
+      if (productoExistente) {
+        setmensajeError('Ya existe un producto con el mismo talle y color');
+        setTimeout(() => {
+          setmensajeError('');
+          window.location.reload(true);
+        }, 2000);
         
-    
+        return;
+      } else{
         setmensajeSuccess('Se Creo el producto');
         setTimeout(() => {
           setmensajeSuccess('');
-          window.location.reload(true);
+          window.location.href="/listarmallas"        
         }, 2000);
+        
       }
+    
+      const datos_producto = {
+        Talle: Talle,
+        Color: Color,
+        Cantidad: Cantidad
+      };
+      
+      API.SaveMallas(datos_producto);
+      Talle.current.value=null;
+      Color.current.value=null;
     };
 
     return(

@@ -12,38 +12,45 @@ export function CrearRemeras(){
     const [Color, setColor] = useState('');
     
     const crear_producto = async () => {
-      if (Talle && Color && Cantidad) {
-        const remeras = await API.getRemeras();
-        const productoExistente = remeras.find(
-          (producto) =>
-            producto.Talle.toLowerCase() === Talle.toLowerCase() && producto.Color.toLowerCase() === Color.toLowerCase()
-        );
-        if (productoExistente) {
-          setmensajeError('Ya existe un producto con el mismo talle y color');
-          setTimeout(() => {
-            setmensajeError('');
-            window.location.reload(true);
-          }, 2000);
-          return;
-        }
-    
-        const datos_producto = {
-          Talle: Talle,
-          Color: Color,
-          Cantidad: Cantidad
-        };
-    
-        API.SaveRemeras(datos_producto);
-        Talle.current.value=null;
-        Color.current.value=null;
+      if (!Talle || !Color || !Cantidad) {
+        setmensajeError('Por favor complete todos los campos');
+        setTimeout(() => {
+          setmensajeError('');
+          window.location.reload(true);
+        }, 2000);
+        return;
+      }
+      const remeras = await API.getRemeras();
+      const productoExistente = remeras.find(
+        (producto) =>
+          producto.Talle.toLowerCase() === Talle.toLowerCase() && producto.Color.toLowerCase() === Color.toLowerCase()
+      );
+      if (productoExistente) {
+        setmensajeError('Ya existe un producto con el mismo talle y color');
+        setTimeout(() => {
+          setmensajeError('');
+          window.location.reload(true);
+        }, 2000);
         
-    
+        return;
+      } else{
         setmensajeSuccess('Se Creo el producto');
         setTimeout(() => {
           setmensajeSuccess('');
-          window.location.reload(true);
+          window.location.href="/listarremeras"        
         }, 2000);
+        
       }
+    
+      const datos_producto = {
+        Talle: Talle,
+        Color: Color,
+        Cantidad: Cantidad
+      };
+      
+      API.SaveMallas(datos_producto);
+      Talle.current.value=null;
+      Color.current.value=null;
     };
     return(
         <div className="card table bg-dark text-white">

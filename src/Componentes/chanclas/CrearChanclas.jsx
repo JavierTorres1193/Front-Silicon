@@ -14,37 +14,46 @@ export function CrearChanclas(){
     
        
     const crear_producto = async () => {
-      if (Talle && Color && Cantidad) {
-        const Chanclas = await API.getChanclas();
-        console.log("CHANCLAS"+Chanclas)
-        const productoExistente = Chanclas.find(
-          (producto) =>
-            producto.Talle.toLowerCase() === Talle.toLowerCase() && producto.Color.toLowerCase() === Color.toLowerCase()
-        );
-        if (productoExistente) {
-          setmensajeError('Ya existe un producto con el mismo talle y color');
-          return;
-        }
-    
-        const datos_producto = {
-          Talle: Talle,
-          Color: Color,
-          Cantidad: Cantidad
-        };
-    
-        API.SaveChanclas(datos_producto);
-        Talle.current.value=null;
-        Color.current.value=null;
+      if (!Talle || !Color || !Cantidad) {
+        setmensajeError('Por favor complete todos los campos');
+        setTimeout(() => {
+          setmensajeError('');
+          window.location.reload(true);
+        }, 2000);
+        return;
+      }
+      const chanclas = await API.getChanclas();
+      const productoExistente = chanclas.find(
+        (producto) =>
+          producto.Talle.toLowerCase() === Talle.toLowerCase() && producto.Color.toLowerCase() === Color.toLowerCase()
+      );
+      if (productoExistente) {
+        setmensajeError('Ya existe un producto con el mismo talle y color');
+        setTimeout(() => {
+          setmensajeError('');
+          window.location.reload(true);
+        }, 2000);
         
-    
+        return;
+      } else{
         setmensajeSuccess('Se Creo el producto');
         setTimeout(() => {
           setmensajeSuccess('');
-          window.location.reload(true);
+          window.location.href="/listarchanclas"        
         }, 2000);
+        
       }
+    
+      const datos_producto = {
+        Talle: Talle,
+        Color: Color,
+        Cantidad: Cantidad
+      };
+      
+      API.SaveMallas(datos_producto);
+      Talle.current.value=null;
+      Color.current.value=null;
     };
-
 
     return(
         <div className="card table bg-dark text-white">
