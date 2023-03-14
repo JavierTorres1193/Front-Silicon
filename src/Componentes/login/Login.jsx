@@ -41,7 +41,7 @@ export function Login (){
         <div class="login-box">
             <h2>Login</h2>
             <form onSubmit={enviarForm}>
-                <h1 class="h3 mb-3 fw-normal text-muted">Ingresar sus datos</h1>
+                <h1 className="h3 mb-3 fw-normal text-muted">Ingresar sus datos</h1>
                     {
                         mensajeError?
                         <div class="alert alert-danger" role="alert">
@@ -61,7 +61,7 @@ export function Login (){
         
         <label for="floatingPassword">Usuario</label>
             </div>
-            <div class="user-box">
+            <div className="user-box">
     
     
         <input 
@@ -78,14 +78,14 @@ export function Login (){
         </div>
         
         <button type='submit' data-text="Awesome" class="button">
-        <span class="actual-text">&nbsp;Iniciar&nbsp;</span>
-        <span class="hover-text" aria-hidden="true">&nbsp;Iniciar&nbsp;</span>
+        <span className="actual-text">&nbsp;Iniciar&nbsp;</span>
+        <span className="hover-text" aria-hidden="true">&nbsp;Iniciar&nbsp;</span>
         </button>
     
     <Link to={'/registro'}>
     <button data-text="Awesome" class="button">
-        <span class="actual-text">&nbsp;Registrarse&nbsp;</span>
-        <span class="hover-text" aria-hidden="true">&nbsp;Registrarse&nbsp;</span>
+        <span className="actual-text">&nbsp;Registrarse&nbsp;</span>
+        <span className="hover-text" aria-hidden="true">&nbsp;Registrarse&nbsp;</span>
     </button>
     </Link>
     

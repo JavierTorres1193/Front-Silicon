@@ -35,7 +35,7 @@ export async function getClientes(){
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-          ELPEPE: `Bearer ${token}`,
+          authorization: `Bearer ${token}`,
         },
       };
       
@@ -56,12 +56,13 @@ export async function getClienteById(idClientes){
 
     const token = JSON.parse(localStorage.getItem('token'));
     
-    const requestOptions = {
+    const  requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-          ELPEPE: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
+    console.log("hola")
     try{
         const response = await fetch(`${API_URL}/clientes/${idClientes}`,requestOptions);
         const data = await response.json();
@@ -73,20 +74,16 @@ export async function getClienteById(idClientes){
 }
 
 
-
-
-// Baja y alta
-
 // Baja y alta
 
 export async function BajaCliente(idClientes){
     
-    // const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            // Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         }
     };
     try{
@@ -101,12 +98,12 @@ export async function BajaCliente(idClientes){
 }
 
 export async function AltaCliente(idClientes){
-    // const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            //  Authorization: `Bearer ${token}`,
+             Authorization: `Bearer ${token}`,
         }
     };
     try{
@@ -123,12 +120,12 @@ export async function AltaCliente(idClientes){
 
 
 export function SaveCliente(datos){
-    // const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     const requestOptions={
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            // Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`
 
         },
         body: JSON.stringify(datos)
@@ -413,7 +410,7 @@ export function UpdateBuzosyCamperas(idBuzosyCamperas, datos){
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(datos)
     };
@@ -442,8 +439,17 @@ export function SaveBuzosyCamperas(datos){
 
 
 export async function chanclas(){
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log(token)
+    const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`,
+        },
+      };
+      
     try{
-        const response = await fetch(`${API_URL}/chanclas`);
+        const response = await fetch(`${API_URL}/chanclas`, requestOptions);
         const data = await response.json();
         return data;
 }   catch (error){
@@ -453,18 +459,20 @@ export async function chanclas(){
 
 //Funcion que trae datos
 export async function getChanclas(){
-    // const token = JSON.parse(localStorage.getItem('token'));
-    
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log("1",token)
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       
     try{
         const response = await fetch(`${API_URL}/chanclas`, requestOptions);
+        console.log("2",response)
         const data = await response.json();
+        console.log("3",data)
         return data;
     }catch(error){
         console.log('Nuestro error', error);
@@ -578,12 +586,12 @@ export async function mallas(){
 
 //Funcion que trae datos
 export async function getMallas(){
-    // const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       
@@ -700,12 +708,12 @@ export async function pantalones(){
 }
 //funcion pantalones get//
 export async function getPantalones(){
-    // const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       
@@ -821,12 +829,12 @@ export async function remeras(){
 
 //Funcion que trae datos
 export async function getRemeras(){
-    // const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     
     const requestOptions = {
         headers: {
           'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       };
       

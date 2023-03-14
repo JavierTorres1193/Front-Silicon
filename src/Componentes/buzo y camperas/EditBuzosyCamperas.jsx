@@ -4,7 +4,6 @@ import * as API from '../../servicios/servicios'
 
 export function EditBuzosyCamperas(){
 
-    const [setBuzosyCamperas] = useState('')
     const [mensajeSuccess, setmensajeSuccess] = useState('')
     const [Talle, setTalle] = useState('');
     const [Color, setColor] = useState('');
@@ -44,7 +43,7 @@ export function EditBuzosyCamperas(){
         setmensajeSuccess('Se edito el producto')
             setTimeout(()=>{
                 setmensajeSuccess('')
-                window.location.reload(true)
+                // window.location.reload(true)
             }, 2000)
         }
 

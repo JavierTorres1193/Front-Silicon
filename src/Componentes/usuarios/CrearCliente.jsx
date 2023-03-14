@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import { Link } from 'react-router-dom';
 import * as API from '../../servicios/servicios'
 
@@ -7,53 +7,46 @@ export function CrearCliente(){
     
     const [mensajeSuccess, setmensajeSuccess] = useState('')
     const [mensajeError, setmensajeError] = useState('')
+
     const [Nombre, setNombre] = useState('');
     const [Direccion, setDireccion] = useState('');
     const [Telefono, setTelefono] = useState('');
     const [Producto, setProducto] = useState('');
-
     
     
-    const crear_cliente = () => {
-        if (Nombre && Direccion && Telefono && Producto) {
-          const datos_cliente = {
-            Nombre: Nombre,
-            Direccion: Direccion,
-            Telefono: Telefono,
-            Producto: Producto
-          };
-          
-          fetch('/proveedores', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(datos_cliente)
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.error) {
-              alert(data.error);
-            } else {
-              setmensajeSuccess('Se agregó al Cliente');
-              setTimeout(() => {
-                setmensajeSuccess('');
-              }, 2000);
-            }
-          })
-          .catch(error => {
-            setmensajeError('Ya existe el Cliente');
-            setTimeout(() => {
-              setmensajeError('');
-            }, 2000);
-          });
-        } else {
-            setmensajeError('Complete todos los campos');
-            setTimeout(() => {
-              setmensajeError('');
-            }, 2000);
+    
+    const crear_cliente = async () => {
+      if (Nombre && Direccion && Telefono && Producto) {
+        const clientes = await API.getClientes();
+        const clienteExistente = clientes.find(
+          (cliente) =>
+            cliente.Nombre.toLowerCase() === Nombre.toLowerCase() && cliente.Producto.toLowerCase() === Producto.toLowerCase()
+        );
+        if (clienteExistente) {
+          setmensajeError('Ya existe un cliente con el mismo nombre y producto');
+          return;
         }
-      };
+    
+        const datos_cliente = {
+          Nombre: Nombre,
+          Direccion: Direccion,
+          Telefono: Telefono,
+          Producto: Producto
+        };
+    
+        API.SaveCliente(datos_cliente);
+        Nombre.current.value=null;
+        Direccion.current.value=null;
+        Telefono.current.value=null;
+        Producto.current.value=null;
+    
+        setmensajeSuccess('Se Creo el cliente');
+        setTimeout(() => {
+          setmensajeSuccess('');
+          window.location.reload(true);
+        }, 2000);
+      }
+    };
     return(
         <div className="card table bg-dark text-white">
             <div className="card-header">
@@ -95,21 +88,28 @@ export function CrearCliente(){
                 <div className="form-group col-4">
                   <label for="">Telefono</label>
                   <input 
-                  type="text"
+                  type="number" min="0"
                    value={Telefono} 
                    onChange={(event)=>setTelefono(event.target.value)}
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted">&nbsp;</small>
                 </div>
                 <div className="form-group col-4">
-                  <label for="">Producto</label>
-                  <input 
-                  type="text"
-                   value={Producto} 
-                   onChange={(event)=>setProducto(event.target.value)}
-                  name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
-                  <small id="helpId" className="text-muted">&nbsp;</small>
-                </div>
+                <label htmlFor="">Producto</label>
+                <select 
+                        value={Producto} 
+                        onChange={(event)=>setProducto(event.target.value)}
+                        className="form-control bg-dark text-white">
+                                <option value="">Selecciona un producto</option>
+                                <option value="BuzosyCamperas">BuzosyCamperas</option>
+                                <option value="Remeras">Remeras</option>
+                                <option value="Mallas">Mallas</option>
+                                <option value="Chanclas">Chanclas</option>
+                                <option value="Pantalones">Pantalones</option>
+                               
+                </select>
+  <small id="helpId" className="text-muted">&nbsp;</small>
+</div>
                 
                 <div className="row">
                     <div className='col-3 mt-3'>

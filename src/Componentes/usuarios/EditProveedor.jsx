@@ -11,6 +11,7 @@ export function EditProveedores(){
     const [Nombre, setNombre] = useState('');
     const [Direccion, setDireccion] = useState('');
     const [Telefono, setTelefono] = useState('');
+    const [Producto, setProducto] = useState('');
     const {idProveedores} = useParams();
 
 
@@ -62,7 +63,7 @@ export function EditProveedores(){
         }
       };
 
-    return(
+      return(
         <div className="card table bg-dark text-white">
             <div className="card-header">
                 Edicion de los datos del proovedor
@@ -109,6 +110,25 @@ export function EditProveedores(){
                   name="" id="" className="form-control bg-dark text-white" placeholder="" aria-describedby="helpId"/>
                   <small id="helpId" className="text-muted ">&nbsp;</small>
                 </div>
+
+
+                <div className="form-group col-4">
+                <label htmlFor="">Producto</label>
+                <select 
+                        value={Producto} 
+                        onChange={(event)=>setProducto(event.target.value)}
+                        className="form-control bg-dark text-white">
+                                <option value="">Selecciona un producto</option>
+                                <option value="BuzosyCamperas">BuzosyCamperas</option>
+                                <option value="Remeras">Remeras</option>
+                                <option value="Mallas">Mallas</option>
+                                <option value="Chanclas">Chanclas</option>
+                                <option value="Pantalones">Pantalones</option>
+                               
+                </select>
+                <small id="helpId" className="text-muted">&nbsp;</small>
+                </div>
+
         
                 </div>
                 <td>
@@ -128,4 +148,4 @@ export function EditProveedores(){
             
         </div>
     )
-        }
+          }

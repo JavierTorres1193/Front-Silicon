@@ -13,45 +13,40 @@ export function CrearPantalones(){
     
     
      
-    const crear_producto = () => {
-        if (Talle && Color) {
-          const datos_producto = {
-            Talle: Talle,
-            Color: Color
-            
-          };
-          
-          fetch('/pantalones', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(datos_producto)
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.error) {
-              alert(data.error);
-            } else {
-              setmensajeSuccess('Se agrego el Producto');
-              setTimeout(() => {
-                setmensajeSuccess('');
-              }, 2000);
-            }
-          })
-          .catch(error => {
-            setmensajeError('Ya existe el Producto');
-            setTimeout(() => {
-              setmensajeError('');
-            }, 2000);
-          });
-        } else {
-            setmensajeError('Complete todos los campos');
-            setTimeout(() => {
-              setmensajeError('');
-            }, 2000);
+    const crear_producto = async () => {
+      if (Talle && Color && Cantidad) {
+        const pantalones = await API.getPantalones();
+        const productoExistente = pantalones.find(
+          (producto) =>
+            producto.Talle.toLowerCase() === Talle.toLowerCase() && producto.Color.toLowerCase() === Color.toLowerCase()
+        );
+        if (productoExistente) {
+          setmensajeError('Ya existe un producto con el mismo talle y color');
+          setTimeout(() => {
+            setmensajeError('');
+            window.location.reload(true);
+          }, 2000);
+          return;
         }
-      };
+    
+        const datos_producto = {
+          Talle: Talle,
+          Color: Color,
+          Cantidad: Cantidad
+        };
+    
+        API.SavePantalones(datos_producto);
+        Talle.current.value=null;
+        Color.current.value=null;
+        
+    
+        setmensajeSuccess('Se Creo el producto');
+        setTimeout(() => {
+          setmensajeSuccess('');
+          window.location.reload(true);
+        }, 2000);
+      }
+    };
 
     return(
         <div className="card table bg-dark text-white">
